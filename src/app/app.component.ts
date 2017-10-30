@@ -7,13 +7,13 @@ import {SplashScreen} from '@ionic-native/splash-screen';
     templateUrl: 'app.html'
 })
 export class AgoraMobile {
-    rootPage: any = 'SetupApp';
-
+    rootPage: string = 'SetupApp';
     constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
         platform.ready().then(() => {
             statusBar.styleDefault();
             splashScreen.hide();
         });
     }
+
 }
 
