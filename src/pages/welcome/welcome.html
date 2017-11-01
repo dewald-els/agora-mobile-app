@@ -1,0 +1,18 @@
+<ion-header no-border>
+    <ion-navbar color="dark">
+        <ion-title></ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content padding no-bounce>
+
+    <div class="welcome__content">
+
+        <img src="assets/imgs/paragon_logo/white-no-bg-256.png" alt="Paragon" width="128">
+
+        <h2>Welcome to Agora</h2>
+        <p>Let's get started by signing in with your Epic account.</p>
+    </div>
+
+</ion-content>
+
+<agora-welcome-footer (skipLoginEvent)="navigateToTabsPage($event)"></agora-welcome-footer>

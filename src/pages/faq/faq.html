@@ -1,0 +1,89 @@
+<ion-header>
+
+    <ion-navbar color="dark">
+        <button ion-button icon-only menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>Faq</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+
+    <ion-card>
+        <ion-card-header>
+            What is "Elo" ?
+        </ion-card-header>
+        <ion-card-content>
+
+            <b>From Wikipedia:</b>
+            <i>The Elo rating system is a method for calculating the relative skill levels of players in
+                competitor-versus-competitor games.</i>
+
+            <p>All players start at a baseline of 1200 points. You will take points from your opponent's Elo score by
+                defeating them, and vise versa. Defeating a more skilled team will yield higher points than if you beat
+                up on a weaker one.</p>
+
+            <p> The higher the score, the more skilled the player. It is extremely difficult to
+                maintain a high Elo score, these players are regarded as the best of the best!</p>
+
+            <i>Note: Elo will vary more in your initial games as our system tries to place you in the appropriate tier.
+                Over time the system will adjust and the amount of Elo change per game will normalize.</i>
+        </ion-card-content>
+
+        <ion-item>
+            <button item-end outline ion-button (click)="showEloDetail()">More info</button>
+        </ion-item>
+
+    </ion-card>
+
+    <ion-card>
+        <ion-card-header text-wrap>
+            Why did I gain/lose a different amount of Elo than a teammate in the same game?
+        </ion-card-header>
+        <ion-card-content>
+            <p>
+                Most commonly your account, or your teammate's account, is new. New accounts have a higher rate of Elo
+                gain and loss to quickly place them into the appropriate league.
+            </p>
+
+            <p>
+                Otherwise, our actual Elo values have decimal precision.
+            </p>
+
+            <p>If you have 1350.91 and your friend has 1290.19 and you guys gain 9.41 Elo from a win, your new value
+                will be 1360.32 and your friend's will be 1299.6.</p>
+
+            <p>We round the numbers on display in profiles to make them visually easier to consume, so your new Elo will
+                be 1360 [+9 from 1351 rounded value], your friend's will be 1300 [+10 from 1290 rounded value].</p>
+
+            <p>While the site shows you gained 9 and they gained 10, you gained the exact same amount internally.</p>
+
+            <p>
+                This is the same reason that an extremely high Elo beating an extremely low Elo can appear as no change
+                after the match.
+            </p>
+        </ion-card-content>
+    </ion-card>
+
+    <ion-card>
+        <ion-card-header text-wrap>
+            How do I get in touch if I have a question/suggestion?
+        </ion-card-header>
+        <ion-card-content>
+
+            <p><i>Agora.gg is a fan run website, we are not the developers of Paragon, you can contact Epic Games from
+                their own website if you have a question about the game or your Paragon account.</i></p>
+
+            <p>To get in touch with our team you can fire us an email at <a href="mailto:support@agora.gg">support@agora.gg</a>.
+                If you have a question regarding your account please be sure to include your gamer tag and platform you
+                are playing on.</p>
+
+            <b>We are unable to diagnose issues if you do not include this information!</b>
+
+        </ion-card-content>
+    </ion-card>
+
+</ion-content>

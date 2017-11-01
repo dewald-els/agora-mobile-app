@@ -1,0 +1,20 @@
+.ios, .md {
+  page-faq {
+    ion-card {
+      ion-card-header {
+        font-weight: bold;
+        border-bottom: 1px solid color($colors, light);
+      }
+      ion-card-content {
+        padding-top: 15px !important;
+        p {
+          margin: 15px 0;
+          line-height: 1.75;
+        }
+        i{
+
+        }
+      }
+    }
+  }
+}

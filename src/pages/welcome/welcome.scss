@@ -1,0 +1,33 @@
+.ios, .md {
+  page-welcome {
+
+    .toolbar-background {
+      background: transparent !important;
+    }
+
+    ion-content.content {
+      background: color($colors, dark) url("../assets/imgs/backgrounds/bg-sparrow-portrait.jpg") top center no-repeat;
+      background-size: cover;
+    }
+
+    .welcome__content {
+      padding-top: 25px;
+      padding-bottom: 10px;
+      text-align: center;
+      background: rgba(0, 0, 0, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      padding-left: 25px;
+      padding-right: 25px;
+
+      h2, p {
+        color: #FFF;
+      }
+
+      h2 {
+        font-weight: bold;
+        text-transform: uppercase;
+      }
+    }
+  }
+
+}

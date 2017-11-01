@@ -1,0 +1,119 @@
+agora-sprite-league {
+
+  .agora-league {
+    display: inline-block;
+    background-image: url('../assets/imgs/sprites/leagues-sprite.png');
+    background-repeat: no-repeat;
+    vertical-align: middle;
+
+    &.league-bronze-lg {
+      width: 108px;
+      height: 116px;
+      background-position: 0 0
+    }
+
+    &.league-bronze-md {
+      width: 60px;
+      height: 64px;
+      background-position: 0 -116px
+    }
+
+    &.league-bronze-sm {
+      width: 20px;
+      height: 22px;
+      background-position: 0 -180px
+    }
+
+    &.league-diamond-lg {
+      width: 164px;
+      height: 116px;
+      background-position: 0 -202px
+    }
+
+    &.league-diamond-md {
+      width: 90px;
+      height: 64px;
+      background-position: 0 -318px
+    }
+
+    &.league-diamond-sm {
+      width: 30px;
+      height: 22px;
+      background-position: 0 -382px
+    }
+
+    &.league-gold-lg {
+      width: 114px;
+      height: 116px;
+      background-position: 0 -404px
+    }
+
+    &.league-gold-md {
+      width: 64px;
+      height: 64px;
+      background-position: 0 -520px
+    }
+
+    &.league-gold-sm {
+      width: 22px;
+      height: 22px;
+      background-position: 0 -584px
+    }
+
+    &.league-master-lg {
+      width: 164px;
+      height: 116px;
+      background-position: 0 -606px
+    }
+
+    &.league-master-md {
+      width: 90px;
+      height: 64px;
+      background-position: 0 -722px
+    }
+
+    &.league-master-sm {
+      width: 30px;
+      height: 22px;
+      background-position: 0 -786px
+    }
+
+    &.league-platinum-lg {
+      width: 124px;
+      height: 116px;
+      background-position: 0 -808px
+    }
+
+    &.league-platinum-md {
+      width: 68px;
+      height: 64px;
+      background-position: 0 -924px
+    }
+
+    &.league-platinum-sm {
+      width: 24px;
+      height: 22px;
+      background-position: 0 -988px
+    }
+
+    &.league-silver-lg {
+      width: 108px;
+      height: 116px;
+      background-position: 0 -1010px
+    }
+
+    &.league-silver-md {
+      width: 60px;
+      height: 64px;
+      background-position: 0 -1126px
+    }
+
+    &.league-silver-sm {
+      width: 20px;
+      height: 22px;
+      background-position: 0 -1190px
+    }
+
+  }
+
+}

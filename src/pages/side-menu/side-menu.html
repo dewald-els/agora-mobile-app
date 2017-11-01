@@ -1,0 +1,35 @@
+<ion-menu [content]="content">
+    <ion-header>
+        <ion-toolbar color="primary">
+            <ion-title>Agora</ion-title>
+        </ion-toolbar>
+    </ion-header>
+    <ion-content class="side-menu__content">
+        <ion-list no-border>
+
+            <ion-item-group>
+                <ion-item-divider color="light">Profile</ion-item-divider>
+                <button ion-item (click)="openPage(page.page)" *ngFor="let page of userPages" menuToggle no-border>
+                    <ion-icon name="{{page.icon}}" item-left></ion-icon> {{page.title}}
+                </button>
+            </ion-item-group>
+
+            <ion-item-group>
+                <ion-item-divider color="light">Strategy</ion-item-divider>
+                <button ion-item (click)="openPage(page.page)" *ngFor="let page of matchEnhancementPages" menuToggle no-border>
+                    <ion-icon name="{{page.icon}}" item-left></ion-icon> {{page.title}}
+                </button>
+            </ion-item-group>
+
+            <ion-item-group>
+                <ion-item-divider color="light">Other</ion-item-divider>
+                <button ion-item (click)="openPage(page.page)" *ngFor="let page of pages" menuToggle no-border>
+                    <ion-icon name="{{page.icon}}" item-left></ion-icon> {{page.title}}
+                </button>
+            </ion-item-group>
+
+        </ion-list>
+    </ion-content>
+</ion-menu>
+
+<ion-nav id="nav" #content [root]="rootPage" swipeBackEnabled="false"></ion-nav>
