@@ -15,6 +15,7 @@ export class EloDetailPage {
     constructor( private viewCtrl: ViewController ) {
     }
 
+
     close() {
         this.viewCtrl.dismiss();
     }
