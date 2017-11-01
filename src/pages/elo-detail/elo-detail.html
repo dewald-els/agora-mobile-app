@@ -8,15 +8,22 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
 
-    <agora-sprite-league [league]="'bronze'" [spriteSize]="'sm'"></agora-sprite-league>
-    <agora-sprite-league [league]="'silver'" [spriteSize]="'sm'"></agora-sprite-league>
-    <agora-sprite-league [league]="'gold'" [spriteSize]="'sm'"></agora-sprite-league>
-    <agora-sprite-league [league]="'platinum'" [spriteSize]="'sm'"></agora-sprite-league>
-    <agora-sprite-league [league]="'diamond'" [spriteSize]="'sm'"></agora-sprite-league>
-    <agora-sprite-league [league]="'master'" [spriteSize]="'sm'"></agora-sprite-league>
+    <ion-card *ngFor="let _league of leagues">
+        <ion-card-header [ngClass]="'elo-' + _league.iconName">
+            <b>{{_league.name}}</b>
+        </ion-card-header>
 
+        <ion-card-content>
+
+            <agora-sprite-league [league]="_league.iconName" [spriteSize]="'md'"></agora-sprite-league>
+            <span class="league-range elo-text elo-{{_league.iconName}}">{{_league.rangeStart}}</span>
+            <span class="league-range elo-text elo-{{_league.iconName}}" *ngIf="_league.rangeEnd"> - {{_league.rangeEnd}}</span>
+
+        </ion-card-content>
+
+    </ion-card>
 
     <ion-fab right bottom>
         <button ion-fab color="primary" (click)="close()">

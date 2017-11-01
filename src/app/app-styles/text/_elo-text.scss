@@ -1,0 +1,26 @@
+.elo-text {
+
+  &.elo-bronze {
+    color: color($colors, elo-bronze) !important;
+  }
+
+  &.elo-silver {
+    color: color($colors, elo-silver) !important;
+  }
+
+  &.elo-gold {
+    color: color($colors, elo-gold) !important;
+  }
+
+  &.elo-platinum {
+    color: color($colors, elo-platinum) !important;
+  }
+
+  &.elo-diamond {
+    color: color($colors, elo-diamond) !important;
+  }
+
+  &.elo-master {
+    color: color($colors, elo-master) !important;
+  }
+}

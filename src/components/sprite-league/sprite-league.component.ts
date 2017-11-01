@@ -6,22 +6,8 @@ import { Component, Input } from '@angular/core';
 })
 export class SpriteLeagueComponent {
 
-    private _spriteSize: string = '';
-    private _league: string = '';
-
-    constructor() {
-
-    }
-
-    @Input()
-    public spriteSize( size: string ) {
-        this._spriteSize = size;
-    }
-
-    @Input()
-    public league( league: string ) {
-        this._league = league;
-    }
+    @Input() public spriteSize : string;
+    @Input() public league : string
 
 }
 

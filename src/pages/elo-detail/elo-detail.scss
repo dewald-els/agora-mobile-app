@@ -1,3 +1,52 @@
 page-elo-detail {
 
+  ion-card-header {
+
+    border-bottom: 1px solid color($colors, light);
+
+    b {
+      color: #FFF !important;
+    }
+
+    &.elo-bronze {
+      background: color($colors, elo-bronze);
+
+    }
+    &.elo-silver {
+      background: color($colors, elo-silver);
+    }
+    &.elo-gold {
+      background: color($colors, elo-gold);
+    }
+    &.elo-platinum {
+      background: color($colors, elo-platinum);
+    }
+    &.elo-diamond {
+      background: color($colors, elo-diamond);
+    }
+    &.elo-master {
+      background: color($colors, elo-master);
+    }
+
+  }
+
+  ion-card-content {
+    padding-top: 25px !important;
+  }
+
+  agora-sprite-league {
+    display: block;
+    text-align: center;
+    margin-bottom: 25px;
+  }
+
+  ion-card-content {
+    text-align: center;
+  }
+
+  .league-range {
+    font-size: 1.75em;
+    font-weight: bold;
+  }
+
 }

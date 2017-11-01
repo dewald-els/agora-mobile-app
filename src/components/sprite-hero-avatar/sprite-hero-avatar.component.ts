@@ -6,20 +6,7 @@ import { Component, Input } from '@angular/core';
 })
 export class SpriteHeroAvatarComponent {
 
-    private _size : string;
-    private _heroName : string;
-
-    constructor() {
-    }
-
-    @Input()
-    public size(size : string) {
-        this._size = size;
-    }
-
-    @Input()
-    public heroName(heroName : string) {
-        this._heroName = heroName;
-    }
+    @Input() public size : string;
+    @Input() public heroName : string;
 }
 
