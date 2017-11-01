@@ -10,7 +10,21 @@
 
 <ion-content>
 
-    <ion-card *ngFor="let _league of leagues">
+    <ion-card>
+        <ion-card-header>
+            <b>ELO</b>
+        </ion-card-header>
+        <ion-list>
+            <ion-item text-wrap>
+                As your score rises and falls, you'll be placed into leagues.
+            </ion-item>
+            <ion-item text-wrap>
+                Elo is account-wide, and is only affected by games that are entirely Player vs Player. Bot games are excluded from any rankings.
+            </ion-item>
+        </ion-list>
+    </ion-card>
+
+    <ion-card *ngFor="let _league of leagues" class="elo-card">
         <ion-card-header [ngClass]="'elo-' + _league.iconName">
             <b>{{_league.name}}</b>
         </ion-card-header>
