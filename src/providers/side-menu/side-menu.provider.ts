@@ -1,6 +1,4 @@
 import { Injectable } from "@angular/core";
-import { EpicAccount } from "../../interfaces/account/epic-account.interface";
-import { ProfileProvider } from "../profile/profile.provider";
 
 @Injectable()
 export class SideMenuProvider {
@@ -23,20 +21,14 @@ export class SideMenuProvider {
         { title: 'Matches', page: 'MatchesPage', icon: 'game-controller-b' },
     ];
 
-
-    private profile: EpicAccount;
-
     private availableMenus: any = {};
 
-    constructor( private profileProvider: ProfileProvider ) {
-        this.profile = this.profileProvider.getCachedProfile();
+    constructor( ) {
     }
 
     private buildMenus() {
 
-        if ( this.profile !== false ) {
-            this.availableMenus.userPages = this.userPages
-        }
+        this.availableMenus.userPages = this.userPages
 
         this.availableMenus.strategyPages = this.strategyPages;
 

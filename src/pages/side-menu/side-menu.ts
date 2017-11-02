@@ -20,15 +20,9 @@ export class SideMenuPage {
 
     constructor( private profileProvider: ProfileProvider, private alertCtrl: AlertController, private menuCtrl: MenuController, private sideMenuProvider: SideMenuProvider ) {
 
-    }
-
-    ionViewWillEnter() {
-
+        this.profile = this.profileProvider.getCachedProfile();
         this.menus = this.sideMenuProvider.getAvailableMenus();
 
-        console.log(this.menus);
-
-        this.profile = this.profileProvider.getCachedProfile();
 
         if ( !this.profile ) {
             this.rootPage = 'LeaderboardsPage';
@@ -55,22 +49,15 @@ export class SideMenuPage {
 
             this.profileProvider.saveToCache(event.account);
             this.profile = event.account;
-
-            this.menus = this.sideMenuProvider.getAvailableMenus();
-
-            console.log(this.menus);
-
             this.nav.setRoot('ProfilePage');
             this.menuCtrl.close('menu');
         }
     }
 
-    signOut(event) {
+    signOut( event ) {
 
         this.profileProvider.logout();
         this.profile = false;
-        this.menus = this.sideMenuProvider.getAvailableMenus();
-
         this.nav.setRoot('LeaderboardsPage');
         this.menuCtrl.close();
     }
