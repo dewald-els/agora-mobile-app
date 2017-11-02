@@ -1,7 +1,7 @@
 <ion-header>
     <ion-navbar color="dark">
 
-        <button ion-button icon-only menuToggle>
+        <button ion-button icon-only menuToggle (popupMenuAction)="popupMenuClicked($event)">
             <ion-icon name="menu"></ion-icon>
         </button>
 
@@ -14,6 +14,7 @@
         </ion-buttons>
     </ion-navbar>
 </ion-header>
-<ion-content>
 
+<ion-content padding>
+    {{profile | json }}
 </ion-content>

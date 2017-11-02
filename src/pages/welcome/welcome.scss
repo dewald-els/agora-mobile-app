@@ -1,6 +1,10 @@
 .ios, .md {
   page-welcome {
 
+    ion-content.content {
+      background: color($colors, dark);
+    }
+
     .toolbar-background {
       background: transparent !important;
     }

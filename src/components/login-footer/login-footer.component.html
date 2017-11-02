@@ -2,12 +2,12 @@
     <ion-toolbar>
         <ion-grid>
             <ion-row>
-                <ion-col>
-                    <button (click)="skipLogin()" ion-button outline block>Skip</button>
+                <ion-col *ngIf="showSkipButton">
+                    <button (click)="skipLogin()" ion-button outline block round>Skip</button>
                 </ion-col>
 
                 <ion-col>
-                    <button ion-button block>Sign in</button>
+                    <button ion-button block (click)="login()" round>Sign in</button>
                 </ion-col>
             </ion-row>
         </ion-grid>

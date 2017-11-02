@@ -15,4 +15,4 @@
 
 </ion-content>
 
-<agora-welcome-footer (skipLoginEvent)="navigateToTabsPage($event)"></agora-welcome-footer>
+<agora-login-footer (skipLoginEvent)="navigateToTabsPage($event)" (loginStatus)="loginStatus($event)" [showSkipButton]="true"></agora-login-footer>

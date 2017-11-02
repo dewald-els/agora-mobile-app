@@ -1,20 +1,23 @@
 import { NgModule } from "@angular/core";
 import { IonicModule } from "ionic-angular";
-import { WelcomeFooterComponent } from "./welcome-footer/welcome-footer.component";
+import { LoginFooterComponent } from "./login-footer/login-footer.component";
 import { SpriteLeagueComponent } from './sprite-league/sprite-league.component';
 import { SpriteHeroAvatarComponent } from './sprite-hero-avatar/sprite-hero-avatar.component';
+import { LogoutFooterComponent } from './logout-footer/logout-footer.component';
 
 @NgModule({
     declarations: [
-        WelcomeFooterComponent,
+        LoginFooterComponent,
         SpriteLeagueComponent,
-        SpriteHeroAvatarComponent
+        SpriteHeroAvatarComponent,
+    LogoutFooterComponent
     ],
     imports: [ IonicModule ],
     exports: [
-        WelcomeFooterComponent,
+        LoginFooterComponent,
         SpriteLeagueComponent,
-        SpriteHeroAvatarComponent
+        SpriteHeroAvatarComponent,
+    LogoutFooterComponent
     ]
 })
 export class ComponentsModule {

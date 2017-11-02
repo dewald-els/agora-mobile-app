@@ -4,3 +4,6 @@ plugins/
 node_modules/
 platforms/
 www/
+*.map
+
+*.map
