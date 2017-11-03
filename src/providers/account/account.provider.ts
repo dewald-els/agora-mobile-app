@@ -6,7 +6,7 @@ import { AgoraCacheProvider } from "../agora-cache/agora-cache.provider";
 import { EpicAccount } from "../../interfaces/account/epic-account.interface";
 
 @Injectable()
-export class ProfileProvider extends BaseProvider {
+export class AccountProvider extends BaseProvider {
 
     constructor( public http: Http, private agoraCacheProvider: AgoraCacheProvider ) {
         super();
@@ -28,4 +28,5 @@ export class ProfileProvider extends BaseProvider {
     public isFirstStart() {
         return this.agoraCacheProvider.getDataFromCache('is-first-start')
     }
+
 }

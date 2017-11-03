@@ -39,3 +39,13 @@ let leagues : League[] = [
 ];
 
 export const LEAGUES = leagues;
+
+export const enum LEAGUE {
+    BRONZE = "Bronze",
+    SILVER = "Silver",
+    GOLD = "Gold",
+    DIAMOND = "Diamond",
+    PLATINUM = "Platinum",
+    MASTER = "Master",
+    NONE = "None"
+};

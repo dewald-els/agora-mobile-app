@@ -1,6 +1,6 @@
 import { Component, ViewChild } from "@angular/core";
 import { AlertController, IonicPage, MenuController, Nav } from "ionic-angular";
-import { ProfileProvider } from "../../providers/profile/profile.provider";
+import { AccountProvider } from "../../providers/account/account.provider";
 import { AccountLoginStatus } from "../../interfaces/account/account-login-status.interface";
 import { SideMenuProvider } from "../../providers/side-menu/side-menu.provider";
 
@@ -18,11 +18,10 @@ export class SideMenuPage {
     private menus = [];
     private profile: any = false;
 
-    constructor( private profileProvider: ProfileProvider, private alertCtrl: AlertController, private menuCtrl: MenuController, private sideMenuProvider: SideMenuProvider ) {
+    constructor( private accountProvider: AccountProvider, private alertCtrl: AlertController, private menuCtrl: MenuController, private sideMenuProvider: SideMenuProvider ) {
 
-        this.profile = this.profileProvider.getCachedProfile();
+        this.profile = this.accountProvider.getCachedProfile();
         this.menus = this.sideMenuProvider.getAvailableMenus();
-
 
         if ( !this.profile ) {
             this.rootPage = 'LeaderboardsPage';
@@ -47,7 +46,7 @@ export class SideMenuPage {
 
         } else {
 
-            this.profileProvider.saveToCache(event.account);
+            this.accountProvider.saveToCache(event.account);
             this.profile = event.account;
             this.nav.setRoot('ProfilePage');
             this.menuCtrl.close('menu');
@@ -56,7 +55,7 @@ export class SideMenuPage {
 
     signOut( event ) {
 
-        this.profileProvider.logout();
+        this.accountProvider.logout();
         this.profile = false;
         this.nav.setRoot('LeaderboardsPage');
         this.menuCtrl.close();

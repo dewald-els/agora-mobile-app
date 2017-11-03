@@ -10,13 +10,19 @@ export class EpicAccountProvider {
 
     private clientId: string = '36afd031eee1443f9af0e5c08cc9b152';
     private account: EpicAccount;
+    private epicLoginUrl: string = 'accounts.epicgames.com/login';
 
-    constructor( private http: Http) {
+    constructor( private http: Http ) {
 
     }
 
     public getLoginUrl() {
         return `https://developer-paragon.epicgames.com/v1/auth/login/${this.clientId}`;
+    }
+
+
+    public getEpicLoginUrl() {
+        return this.epicLoginUrl;
     }
 
 

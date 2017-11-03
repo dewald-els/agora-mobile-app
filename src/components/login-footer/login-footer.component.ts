@@ -30,10 +30,26 @@ export class LoginFooterComponent {
 
     async login() {
 
-        let browserLogin = this.inAppBrowser.create(this.epicAccountProvider.getLoginUrl(), '_blank', {
+        let agoraLoginUrl = this.epicAccountProvider.getLoginUrl();
+        let epicLoginUrl = this.epicAccountProvider.getEpicLoginUrl();
+
+        let loader = this.loadingCtrl.create({
+            content: 'Connecting to Epic...'
+        });
+        loader.present();
+
+        let browserLogin = this.inAppBrowser.create(agoraLoginUrl, '_blank', {
             zoom: 'no',
             location: 'no',
-            closeButtonCaption: 'Cancel'
+            closeButtonCaption: 'Cancel',
+            hidden: 'yes'
+        });
+
+        browserLogin.on('loadstop').subscribe(( event: InAppBrowserEvent ) => {
+            if ( event.url.indexOf(epicLoginUrl) > -1 ) {
+                loader.dismiss();
+                browserLogin.show();
+            }
         });
 
         browserLogin.on('loadstart').subscribe(( event: InAppBrowserEvent ) => {
@@ -47,8 +63,14 @@ export class LoginFooterComponent {
             }
         });
 
+        browserLogin.on('exit').subscribe(() => {
+            try {
+                loader.dismiss();
+            } catch ( e ) {
+                console.error(e);
+            }
+        })
 
-        browserLogin.show();
 
     }
 

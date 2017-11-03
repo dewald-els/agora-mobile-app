@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { LoadingController, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { ProfileProvider } from "../providers/profile/profile.provider";
+import { AccountProvider } from "../providers/account/account.provider";
 import { EpicAccountProvider } from "../providers/epic/epic-account.provider";
 import { InAppBrowser, InAppBrowserEvent } from "@ionic-native/in-app-browser";
 import { AccountLoginStatus } from "../interfaces/account/account-login-status.interface";
@@ -17,24 +17,24 @@ export class AgoraMobile {
     private loader;
 
     constructor( private platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen,
-                 private profileProvider: ProfileProvider,
+                 private accountProvider: AccountProvider,
                  private epicAccountProvider: EpicAccountProvider,
                  private inAppBrowser: InAppBrowser,
                  private loadingCtrl: LoadingController ) {
 
-        console.log(this.profileProvider.isFirstStart());
+        console.log(this.accountProvider.isFirstStart());
 
-        console.log(this.profileProvider.getCachedProfile() === false);
+        console.log(this.accountProvider.getCachedProfile() === false);
 
-        if ( this.profileProvider.isFirstStart() === true && this.profileProvider.getCachedProfile() === false ) {
+        if ( this.accountProvider.isFirstStart() === true && this.accountProvider.getCachedProfile() === false ) {
             this.rootPage = 'WelcomePage';
         }
 
-        else if ( this.profileProvider.isFirstStart() && this.profileProvider.getCachedProfile() === false ) {
+        else if ( this.accountProvider.isFirstStart() && this.accountProvider.getCachedProfile() === false ) {
             this.rootPage = 'SideMenuPage';
         }
 
-        else if ( this.profileProvider.getCachedProfile() !== false ) {
+        else if ( this.accountProvider.getCachedProfile() !== false ) {
             this.autoLoginAttempt();
         }
 

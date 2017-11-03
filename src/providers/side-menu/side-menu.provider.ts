@@ -28,7 +28,7 @@ export class SideMenuProvider {
 
     private buildMenus() {
 
-        this.availableMenus.userPages = this.userPages
+        this.availableMenus.userPages = this.userPages;
 
         this.availableMenus.strategyPages = this.strategyPages;
 

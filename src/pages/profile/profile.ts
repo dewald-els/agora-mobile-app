@@ -2,7 +2,7 @@ import { Component, ViewChild } from "@angular/core";
 import { AlertController, IonicPage, MenuController, NavController, PopoverController } from "ionic-angular";
 import { ProfileMenuPopoverPage } from "../profile-menu-popover/profile-menu-popover";
 import { PROFILE_POPUP_ACTION } from "../../static-models/profile-popup-actions/profile-popup-actions.static";
-import { ProfileProvider } from "../../providers/profile/profile.provider";
+import { AccountProvider } from "../../providers/account/account.provider";
 
 @IonicPage()
 @Component({
@@ -15,10 +15,10 @@ export class ProfilePage {
 
     constructor( private navCtrl: NavController,
                  private popoverCtrl: PopoverController,
-                 private profileProvider: ProfileProvider,
+                 private accountProvider: AccountProvider,
                  private alertCtrl: AlertController,
                  private menuCtrl : MenuController) {
-        this.profile = this.profileProvider.getCachedProfile();
+        this.profile = this.accountProvider.getCachedProfile();
     }
 
     showProfileMenu( event ) {
