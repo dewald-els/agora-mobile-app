@@ -15,6 +15,47 @@
     </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-    {{profile | json }}
+<ion-content>
+
+    <div class="profile__content" *ngIf="profile">
+
+
+        <header class="profile__header">
+
+            <div class="profile__header-avatar">
+                <agora-sprite-hero-avatar [size]="64" [heroName]="'HeroData_TwinBlast'"></agora-sprite-hero-avatar>
+            </div>
+
+            <div class="profile__header-name">
+                <h2>{{profile.name}}</h2>
+            </div>
+
+        </header>
+
+
+        <ion-card class="profile__elo">
+
+            <ion-card-content>
+
+                <ion-grid>
+                    <ion-row>
+                        <ion-col col-4>
+                            <agora-sprite-league [league]="currentLeague.iconName"
+                                                 [spriteSize]="'md'"></agora-sprite-league>
+                        </ion-col>
+                        <ion-col>
+                            <h2 class="elo-text" [ngClass]="['elo-'+currentLeague.iconName]">{{profile.getElo()}}</h2>
+                            <p>{{currentLeague.name}}</p>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+
+            </ion-card-content>
+
+        </ion-card>
+
+
+    </div>
+
+
 </ion-content>

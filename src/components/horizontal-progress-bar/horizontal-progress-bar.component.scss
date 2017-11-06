@@ -1,0 +1,26 @@
+horizontal-progress-bar {
+
+
+
+  .progress-bar {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    background: #eee;
+    border-radius: 17px;
+    padding: 2px;
+    margin: 5px 0;
+    height: 20px;
+    overflow: hidden;
+    .progress-bar-inner {
+      height: 16px;
+      line-height: 16px;
+      border-radius: 17px;
+      background: color($colors, primary);
+      text-align: center;
+      font-size: 0.75em;
+      font-weight: bold;
+    }
+  }
+
+}

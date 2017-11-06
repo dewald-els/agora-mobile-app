@@ -1,6 +1,6 @@
 import { League } from "../../interfaces/league/league.interface";
 
-let leagues : League[] = [
+let leagues: League[] = [
     {
         name: 'Bronze',
         iconName: 'bronze',
@@ -41,11 +41,11 @@ let leagues : League[] = [
 export const LEAGUES = leagues;
 
 export const enum LEAGUE {
-    BRONZE = "Bronze",
-    SILVER = "Silver",
-    GOLD = "Gold",
-    DIAMOND = "Diamond",
-    PLATINUM = "Platinum",
-    MASTER = "Master",
-    NONE = "None"
-};
+    BRONZE,
+    SILVER ,
+    GOLD,
+    DIAMOND ,
+    PLATINUM,
+    MASTER,
+    NONE
+}

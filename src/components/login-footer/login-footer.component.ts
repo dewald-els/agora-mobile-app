@@ -70,8 +70,6 @@ export class LoginFooterComponent {
                 console.error(e);
             }
         })
-
-
     }
 
     private async authorizeAccount( code ) {

@@ -15,6 +15,7 @@ import { AgoraCacheProvider } from '../providers/agora-cache/agora-cache.provide
 import { HttpModule } from "@angular/http";
 import { EpicAccountProvider } from "../providers/epic/epic-account.provider";
 import { SideMenuProvider } from "../providers/side-menu/side-menu.provider";
+import { ProfileProvider } from "../providers/profile/profile.provider";
 
 @NgModule({
     declarations: [
@@ -40,7 +41,8 @@ import { SideMenuProvider } from "../providers/side-menu/side-menu.provider";
         AccountProvider,
         AgoraCacheProvider,
         EpicAccountProvider,
-        SideMenuProvider
+        SideMenuProvider,
+        ProfileProvider
     ]
 })
 export class AppModule {}

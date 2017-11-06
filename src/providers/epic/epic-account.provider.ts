@@ -26,7 +26,7 @@ export class EpicAccountProvider {
     }
 
 
-    async authorizeLogin( code: string ): AccountLoginStatus {
+    async authorizeLogin( code: string ) {
         try {
             let response = await this.http.get(`https://api.agora.gg/v1/epic/authorize/${code}?env=prod`).toPromise();
             return {

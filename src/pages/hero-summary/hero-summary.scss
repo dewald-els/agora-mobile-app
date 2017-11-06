@@ -1,0 +1,27 @@
+.ios, .md {
+  page-hero-summary {
+
+    ion-content.content {
+      background-color: color($colors, dark);
+      background-size: cover !important;
+      background-position: top center !important;
+    }
+
+    .hero-summary__header-card {
+
+      opacity: 0.9;
+
+      agora-sprite-hero-avatar {
+        div {
+          border-radius: 50%;
+          border: 2px solid color($colors, primary);
+        }
+      }
+
+      h2 {
+        font-size: 1.5em;
+        font-weight: bold;
+      }
+    }
+  }
+}

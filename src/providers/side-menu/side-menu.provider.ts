@@ -5,7 +5,7 @@ export class SideMenuProvider {
 
     dataPages = [
         { title: 'Leaderboards', page: 'LeaderboardsPage', icon: 'trophy' },
-        { title: 'Heroes', page: 'HeroesPage', icon: 'contacts' },
+        { title: 'Heroes', page: 'HeroStatsPage', icon: 'contacts' },
         { title: 'Guides', page: 'GuidesPage', icon: 'school' },
         { title: 'FAQ', page: 'FaqPage', icon: 'help-circle' },
     ];

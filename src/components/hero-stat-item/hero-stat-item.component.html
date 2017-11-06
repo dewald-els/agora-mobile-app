@@ -1,0 +1,33 @@
+<button ion-item (click)="onHeroStatItemClicked(heroStat.heroData.id)">
+
+    <ion-grid>
+        <ion-row>
+            <ion-col col-2>
+                <agora-sprite-hero-avatar [size]="48" [heroName]="heroStat.hero"></agora-sprite-hero-avatar>
+            </ion-col>
+            <ion-col>
+                <h2>{{heroStat.heroData?.name}}</h2>
+                <p>{{heroStat.heroData?.attack}}</p>
+            </ion-col>
+        </ion-row>
+
+        <ion-row class="stats-row">
+            <ion-col text-center>
+                <small>WIN</small>
+                <horizontal-progress-bar
+                        [percentage]="heroStat.winRate"></horizontal-progress-bar>
+            </ion-col>
+            <ion-col text-center>
+                <small>PICK</small>
+                <horizontal-progress-bar
+                        [percentage]="heroStat.pickRate"></horizontal-progress-bar>
+            </ion-col>
+            <ion-col text-center>
+                <small style="display: block">KDA</small>
+                <span style="display: block">{{heroStat.kdaRate}}</span>
+                <small>{{heroStat.kills.toFixed(0)}} / {{heroStat.deaths.toFixed(0)}} /
+                    {{heroStat.assists.toFixed(0)}}
+                </small>
+            </ion-col>
+        </ion-row>
+    </ion-grid>

@@ -4,13 +4,15 @@ import 'rxjs/add/operator/map';
 import { BaseProvider } from "../base-provider";
 import { Hero } from "../../interfaces/hero/hero";
 import "rxjs/add/operator/toPromise";
+import { HeroStats } from "../../interfaces/hero/hero-stats.interface";
+import { AgoraCacheProvider } from "../agora-cache/agora-cache.provider";
 
 @Injectable()
 export class HeroProvider extends BaseProvider {
 
     private heroes = [] as Hero[] || Boolean;
 
-    constructor( public http: Http ) {
+    constructor( public http: Http, private cacheProvider: AgoraCacheProvider ) {
         super();
         this.storageKey = 'heroes';
     }
@@ -22,6 +24,35 @@ export class HeroProvider extends BaseProvider {
         } catch ( e ) {
             console.error(e);
             return [];
+        }
+    }
+
+    public async getHeroStats( league?: string ) {
+        try {
+            const response = await this.http.get('https://api.agora.gg/v1/heroes/stats').toPromise();
+            return <HeroStats[]>response.json();
+        }
+        catch ( error ) {
+            return [];
+        }
+    }
+
+    public cacheHeroes( heroes: Hero[] ): void {
+        this.cacheProvider.saveToCache(this.storageKey, heroes);
+    }
+
+    public getCachedHeroes(): Hero[] {
+        return <Hero[]>this.cacheProvider.getDataFromCache(this.storageKey);
+    }
+
+    public async getHeroSummary( heroId: string ) {
+
+        try {
+            const response = await this.http.get(`https://api.agora.gg/v1/gamedata/heroes/${heroId}`).toPromise();
+            return response.json();
+        } catch ( error ) {
+            console.log(error);
+            return null;
         }
     }
 }

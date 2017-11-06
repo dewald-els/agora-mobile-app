@@ -1,0 +1,47 @@
+.ios, .md {
+  page-hero-stats {
+
+    .toolbar-select {
+      .item-ios.item-block .item-inner {
+        border: none;
+      }
+    }
+
+    ion-row {
+      align-items: center;
+    }
+
+    .hero-stats-list {
+      .item {
+
+        padding-left: 0;
+
+        agora-sprite-hero-avatar {
+          div {
+            border-radius: 50%;
+            border: 2px solid color($colors, primary);
+          }
+        }
+
+        h2 {
+          font-weight: bold;
+          color: color($colors, primary);
+        }
+      }
+
+      ion-label.label {
+        margin: 0;
+        padding-left: 0;
+      }
+    }
+
+    .grid {
+
+      .stats-row {
+        .col {
+          padding-right: 10px;
+        }
+      }
+    }
+  }
+}

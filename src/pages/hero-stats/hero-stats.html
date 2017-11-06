@@ -1,0 +1,51 @@
+<ion-header>
+    <ion-navbar color="dark">
+
+        <button ion-button icon-only menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+
+        <ion-title>Hero stats</ion-title>
+
+    </ion-navbar>
+
+    <ion-toolbar no-border-top color="dark" class="toolbar-select">
+
+        <ion-item no-border>
+            <ion-label>
+                <ion-icon name="stats" color="primary"></ion-icon>
+                Sort by
+            </ion-label>
+            <ion-select [(ngModel)]="sortStatsBy" (ionChange)="sortHeroStats()">
+                <ion-option value="wins">Win rate</ion-option>
+                <ion-option value="picks">Pick rate</ion-option>
+                <ion-option value="kda">KDA</ion-option>
+                <ion-option value="name">Name</ion-option>
+            </ion-select>
+        </ion-item>
+
+    </ion-toolbar>
+
+    <ion-toolbar no-border-top color="dark" class="toolbar-select">
+
+        <ion-item no-border>
+            <ion-label>
+                <ion-icon name="funnel" color="primary"></ion-icon>
+                Elo League
+            </ion-label>
+            <ion-select [(ngModel)]="filterByLeague" (ionChange)="filterHeroStatsByLeague(filterByLeague)">
+                <ion-option value="all">All</ion-option>
+                <ion-option value="{{league.iconName}}" *ngFor="let league of leagues">{{league.name}}</ion-option>
+            </ion-select>
+        </ion-item>
+
+    </ion-toolbar>
+
+
+</ion-header>
+
+<ion-content>
+    <ion-list class="hero-stats-list">
+        <hero-stat-item [heroStat]="heroStat" (loadHeroPage)="goToHeroSummaryPage($event)" *ngFor="let heroStat of heroStats"></hero-stat-item>
+    </ion-list>
+</ion-content>

@@ -1,5 +1,7 @@
+import { Ability } from "./ability.interface";
+
 export interface Hero {
-    abilities: any;
+    abilities?: Array<Ability>;
     affinity1: string;
     affinity2: string;
     attack: string;

@@ -1,0 +1,35 @@
+.ios, .md {
+  profile-page {
+
+    .profile__header {
+
+      background-color: color($colors, dark);
+
+      .profile__header-avatar {
+        float: left;
+      }
+
+      .profile__header-name {
+        float: left;
+        color: color($colors, primary);
+        margin-left: 15px;
+      }
+
+      &:after {
+        content: '';
+        display: block;
+        clear: both;
+      }
+
+    }
+
+    .profile__elo {
+      h2 {
+        font-size: 2em;
+        font-weight: bold;
+      }
+    }
+
+
+  }
+}

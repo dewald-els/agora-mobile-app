@@ -3,6 +3,11 @@ import { AlertController, IonicPage, MenuController, NavController, PopoverContr
 import { ProfileMenuPopoverPage } from "../profile-menu-popover/profile-menu-popover";
 import { PROFILE_POPUP_ACTION } from "../../static-models/profile-popup-actions/profile-popup-actions.static";
 import { AccountProvider } from "../../providers/account/account.provider";
+import { EpicAccount } from "../../interfaces/account/epic-account.interface";
+import { ProfileProvider } from "../../providers/profile/profile.provider";
+import { PlayerProfile } from "../../interfaces/player-profile/player-profile.model";
+import { LEAGUES } from "../../static-models/leagues/leagues.static";
+import { League } from "../../interfaces/league/league.interface";
 
 @IonicPage()
 @Component({
@@ -11,15 +16,28 @@ import { AccountProvider } from "../../providers/account/account.provider";
 })
 export class ProfilePage {
 
-    private profile: any;
+    private account: EpicAccount;
+    private profile: PlayerProfile;
+    private leagues = LEAGUES;
+    private currentLeague: League;
 
     constructor( private navCtrl: NavController,
                  private popoverCtrl: PopoverController,
                  private accountProvider: AccountProvider,
-                 private alertCtrl: AlertController,
-                 private menuCtrl : MenuController) {
-        this.profile = this.accountProvider.getCachedProfile();
+                 private profileProvider: ProfileProvider ) {
+
+        this.account = this.accountProvider.getCachedProfile();
+        this.getPlayerProfile();
+
     }
+
+    async getPlayerProfile() {
+        let profile = await this.profileProvider.getProfile(this.account.playerId);
+        this.profile = new PlayerProfile(profile);
+        this.currentLeague = this.leagues[ this.profile.calculateProfileLeague() ];
+
+    }
+
 
     showProfileMenu( event ) {
 

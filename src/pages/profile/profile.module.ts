@@ -2,6 +2,7 @@ import { NgModule } from "@angular/core";
 import { ProfilePage } from "./profile";
 import { IonicPageModule } from "ionic-angular";
 import { ProfileMenuPopoverPageModule } from "../profile-menu-popover/profile-menu-popover.module";
+import { ComponentsModule } from "../../components/components.module";
 
 @NgModule({
     declarations: [
@@ -9,7 +10,8 @@ import { ProfileMenuPopoverPageModule } from "../profile-menu-popover/profile-me
     ],
     imports: [
         IonicPageModule.forChild(ProfilePage),
-        ProfileMenuPopoverPageModule
+        ProfileMenuPopoverPageModule,
+        ComponentsModule
     ],
     exports: [
     ]
