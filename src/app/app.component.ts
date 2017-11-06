@@ -13,7 +13,6 @@ import { AccountLoginStatus } from "../interfaces/account/account-login-status.i
 export class AgoraMobile {
 
     rootPage: string = 'WelcomePage';
-
     private loader;
 
     constructor( private platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen,
@@ -22,21 +21,18 @@ export class AgoraMobile {
                  private inAppBrowser: InAppBrowser,
                  private loadingCtrl: LoadingController ) {
 
-        console.log(this.accountProvider.isFirstStart());
-
-        console.log(this.accountProvider.getCachedProfile() === false);
-
         if ( this.accountProvider.isFirstStart() === true && this.accountProvider.getCachedProfile() === false ) {
             this.rootPage = 'WelcomePage';
         }
 
-        else if ( this.accountProvider.isFirstStart() && this.accountProvider.getCachedProfile() === false ) {
+        else if ( !this.accountProvider.isFirstStart() && this.accountProvider.getCachedProfile() === false ) {
             this.rootPage = 'SideMenuPage';
         }
 
         else if ( this.accountProvider.getCachedProfile() !== false ) {
             this.autoLoginAttempt();
         }
+
 
         this.platform.ready().then(() => {
             statusBar.styleLightContent();
@@ -47,6 +43,7 @@ export class AgoraMobile {
     private autoLoginAttempt() {
 
         this.platform.ready().then(() => {
+
             this.loader = this.loadingCtrl.create({
                 content: 'Loading your Epic account...'
             });
@@ -80,6 +77,8 @@ export class AgoraMobile {
 
         if ( response.result === true ) {
             this.rootPage = 'SideMenuPage';
+        } else {
+            console.error(response.error);
         }
         this.loader.dismiss();
     }

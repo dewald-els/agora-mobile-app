@@ -6,7 +6,41 @@
 
         <ion-title>Heroes</ion-title>
     </ion-navbar>
+
+    <ion-toolbar no-border-top color="dark">
+        <ion-searchbar (ionInput)="filterHeroes($event)" color="dark" (ionClear)="clearFilter($event)"></ion-searchbar>
+    </ion-toolbar>
 </ion-header>
 <ion-content>
 
+
+    <ion-list>
+        <button ion-item *ngFor="let hero of filteredHeroes">
+
+            <ion-avatar item-start>
+                <agora-sprite-hero-avatar [size]="64" [heroName]="hero.id"></agora-sprite-hero-avatar>
+            </ion-avatar>
+
+            <h2>{{hero.name}}</h2>
+            <p>{{hero.attack}}</p>
+
+        </button>
+    </ion-list>
+
 </ion-content>
+
+<ion-footer>
+    <ion-toolbar>
+        <ion-segment [(ngModel)]="attackTypeFilter">
+            <ion-segment-button value="all" (ionSelect)="onSegmentClicked('all')">
+                All
+            </ion-segment-button>
+            <ion-segment-button value="melee" (ionSelect)="onSegmentClicked('melee')">
+                Melee
+            </ion-segment-button>
+            <ion-segment-button value="ranged" (ionSelect)="onSegmentClicked('ranged')">
+                Ranged
+            </ion-segment-button>
+        </ion-segment>
+    </ion-toolbar>
+</ion-footer>
