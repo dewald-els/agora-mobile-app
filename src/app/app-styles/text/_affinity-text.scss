@@ -1,0 +1,18 @@
+.affinity-text {
+  &.chaos {
+    color: color($colors, affinity-chaos);
+  }
+  &.death {
+    color: color($colors, affinity-death);
+  }
+  &.growth {
+    color: color($colors, affinity-growth);
+  }
+  &.knowledge {
+    color: color($colors, affinity-knowledge);
+  }
+  &.order {
+    color: color($colors, affinity-order);
+  }
+}
+

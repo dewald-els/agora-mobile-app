@@ -1,0 +1,29 @@
+affinity-icon {
+
+  margin: 0 auto;
+
+
+  .affinity-icon {
+    border-radius: 3px;
+    padding: 5px;
+    width: 100%;
+
+    &.chaos {
+      background: color($colors, affinity-chaos);
+    }
+    &.death {
+      background: color($colors, affinity-death);
+    }
+    &.order {
+      background: color($colors, affinity-order);
+    }
+    &.knowledge {
+      background: color($colors, affinity-knowledge);
+    }
+    &.growth {
+      background: color($colors, affinity-growth);
+    }
+
+  }
+
+}

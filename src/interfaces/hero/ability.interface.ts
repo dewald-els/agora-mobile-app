@@ -7,4 +7,5 @@ export interface Ability {
     name: string;
     shortDescription: string;
     type: string;
+    iconUrl?: string;
 }

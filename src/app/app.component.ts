@@ -68,7 +68,6 @@ export class AgoraMobile {
                 }
             });
         });
-
     }
 
     private async authorizeLogin( code ) {

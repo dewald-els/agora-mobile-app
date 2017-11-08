@@ -1,0 +1,24 @@
+ability-list-card {
+
+  .ability-icon {
+    background: color($colors, dark);
+    width: 48px;
+    height: 48px;
+    img {
+      width: 100%;
+      max-width: 100%;
+    }
+  }
+
+
+
+  .ability-item {
+
+    .ability-description {
+      font-size: 1.5rem;
+      line-height: 1.5;
+    }
+
+  }
+
+}

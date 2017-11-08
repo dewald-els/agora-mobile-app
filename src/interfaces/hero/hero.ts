@@ -12,4 +12,6 @@ export interface Hero {
     name: string;
     slug: string;
     type: string;
+    affinity1Icon?: string;
+    affinity2Icon?: string;
 }

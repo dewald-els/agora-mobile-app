@@ -6,6 +6,8 @@ import { SpriteHeroAvatarComponent } from './sprite-hero-avatar/sprite-hero-avat
 import { LogoutFooterComponent } from './logout-footer/logout-footer.component';
 import { HorizontalProgressBarComponent } from './horizontal-progress-bar/horizontal-progress-bar.component';
 import { HeroStatItemComponent } from "./hero-stat-item/hero-stat-item.component";
+import { AffinityIconComponent } from "./affinity-icon/affinity-icon.component";
+import { AbilityListCardComponent } from './ability-list-card/ability-list-card.component';
 
 @NgModule({
     declarations: [
@@ -14,7 +16,9 @@ import { HeroStatItemComponent } from "./hero-stat-item/hero-stat-item.component
         SpriteHeroAvatarComponent,
         LogoutFooterComponent,
         HorizontalProgressBarComponent,
-        HeroStatItemComponent
+        HeroStatItemComponent,
+        AffinityIconComponent,
+        AbilityListCardComponent
     ],
     imports: [ IonicModule ],
     exports: [
@@ -23,9 +27,10 @@ import { HeroStatItemComponent } from "./hero-stat-item/hero-stat-item.component
         SpriteHeroAvatarComponent,
         LogoutFooterComponent,
         HorizontalProgressBarComponent,
-        HeroStatItemComponent
+        HeroStatItemComponent,
+        AffinityIconComponent,
+        AbilityListCardComponent
     ]
 })
 export class ComponentsModule {
-
 }

@@ -55,4 +55,13 @@ export class HeroProvider extends BaseProvider {
             return null;
         }
     }
+
+    public getAbilityIconUrl( iconCode: string ) {
+        return `//static.agora.gg/skills/${iconCode}.png`;
+    }
+
+    public getAffinityIconUrl( affinityName: string ) {
+        let name = affinityName.toLowerCase();
+        return `assets/imgs/affinities/affinity-${name}.png`;
+    }
 }

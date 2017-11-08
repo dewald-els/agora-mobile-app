@@ -17,7 +17,7 @@
 
 <ion-content>
 
-    <div class="profile__content" *ngIf="profile">
+    <div class="profile__content" [ngClass]="{'hide' : !profile}">
 
 
         <header class="profile__header">
@@ -27,7 +27,7 @@
             </div>
 
             <div class="profile__header-name">
-                <h2>{{profile.name}}</h2>
+                <h2>{{profile?.name}}</h2>
             </div>
 
         </header>
@@ -44,7 +44,7 @@
                                                  [spriteSize]="'md'"></agora-sprite-league>
                         </ion-col>
                         <ion-col>
-                            <h2 class="elo-text" [ngClass]="['elo-'+currentLeague.iconName]">{{profile.getElo()}}</h2>
+                            <h2 class="elo-text" [ngClass]="['elo-'+currentLeague.iconName]">{{profile?.getElo()}}</h2>
                             <p>{{currentLeague.name}}</p>
                         </ion-col>
                     </ion-row>

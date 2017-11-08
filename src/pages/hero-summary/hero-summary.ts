@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, setTestabilityGetter } from '@angular/core';
 import { IonicPage, LoadingController, NavController, NavParams } from 'ionic-angular';
 import { HeroProvider } from "../../providers/hero/hero.provider";
 import { Hero } from "../../interfaces/hero/hero";
+import { Ability } from "../../interfaces/hero/ability.interface";
 
 @IonicPage()
 @Component({
@@ -12,11 +13,11 @@ export class HeroSummaryPage {
 
     private pageTitle: string = 'Hero Summary';
     private heroId: string = '0fd6f97096f0356e479dc8ef23dcd819';
-    private hero: Hero;
+    private hero = {} as Hero;
     private heroBackground: string = '';
 
     constructor( public navCtrl: NavController, public navParams: NavParams, private heroProvider: HeroProvider, private loadingCtrl: LoadingController ) {
-        this.heroId = this.navParams.get('heroId');
+        //this.heroId = this.navParams.get('heroId');
         this.getHeroSummary();
     }
 
@@ -29,11 +30,19 @@ export class HeroSummaryPage {
 
         this.hero = await this.heroProvider.getHeroSummary(this.heroId);
         let heroes = this.heroProvider.getCachedHeroes();
+
         heroes.map(( hero: Hero ) => {
             if ( hero.id == this.hero.id ) {
                 this.hero.code = hero.code;
             }
         });
+
+        this.hero.abilities.forEach(( ability: Ability ) => {
+            ability.iconUrl = this.heroProvider.getAbilityIconUrl(ability.icon);
+        });
+
+        this.hero.affinity1Icon = this.heroProvider.getAffinityIconUrl(this.hero.affinity1);
+        this.hero.affinity2Icon = this.heroProvider.getAffinityIconUrl(this.hero.affinity2);
 
         this.pageTitle = this.hero.name;
 
@@ -50,8 +59,6 @@ export class HeroSummaryPage {
         img.src = '//static.agora.gg/renders/' + this.hero.code + '.jpg';
 
         console.log(this.hero);
-
     }
-
 
 }

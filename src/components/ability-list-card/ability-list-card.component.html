@@ -1,0 +1,41 @@
+<ion-card>
+    <ion-card-header>
+        Abilities
+    </ion-card-header>
+
+    <ion-item-group *ngFor="let ability of abilities">
+        <ion-item-divider color="light">
+            {{ability.name}}
+            <ion-badge item-end>{{ability.type}}</ion-badge>
+        </ion-item-divider>
+        <ion-item class="ability-item">
+
+            <ion-grid no-padding>
+                <ion-row>
+
+                    <ion-col col-3>
+                        <div class="ability-icon">
+                            <img [src]="ability.iconUrl" width="48">
+                        </div>
+                    </ion-col>
+
+                    <ion-col>
+                        <p class="ability-description" text-wrap>
+                            {{ability.description}}
+                        </p>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </ion-item>
+
+        <ion-list-header>
+            Cooldowns
+        </ion-list-header>
+
+        <ion-item text-wrap>
+            <p>{{ability.modifiersByLevel[0][0].modifier | json}}</p>
+        </ion-item>
+
+    </ion-item-group>
+
+</ion-card>

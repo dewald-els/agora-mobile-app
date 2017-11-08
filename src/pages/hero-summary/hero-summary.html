@@ -13,7 +13,7 @@
         <ion-card class="hero-summary__header-card">
             <ion-item>
                 <ion-avatar item-start>
-                    <agora-sprite-hero-avatar [size]="100" [heroName]="hero?.code"></agora-sprite-hero-avatar>
+                    <agora-sprite-hero-avatar [size]="64" [heroName]="hero?.code"></agora-sprite-hero-avatar>
                 </ion-avatar>
                 <h2>{{hero?.name}}</h2>
                 <p>{{hero?.attack}}</p>
@@ -21,17 +21,32 @@
 
         </ion-card>
 
-
         <ion-card>
             <ion-card-header>
-                Abilities
+                Affinities
             </ion-card-header>
+            <ion-grid>
+                <ion-row>
+                    <ion-col text-center>
 
-            <ion-item-group *ngFor="let ability of hero?.abilities">
-                <ion-item-divider color="light">{{ability.name}}</ion-item-divider>
-            </ion-item-group>
+                        <affinity-icon *ngIf="hero.affinity1" [affinity]="hero.affinity1" [iconSize]="84"></affinity-icon>
 
+                        <h2 class="affinity-text death">{{hero?.affinity1}}</h2>
+
+                    </ion-col>
+                    <ion-col text-center>
+
+                        <affinity-icon *ngIf="hero.affinity2" [affinity]="hero.affinity2" [iconSize]="84"></affinity-icon>
+
+                        <h2 class="affinity-text chaos">{{hero?.affinity2}}</h2>
+
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
         </ion-card>
+
+        <ability-list-card *ngIf="hero.abilities" [abilities]="hero.abilities"></ability-list-card>
+
     </div>
 
 </ion-content>
