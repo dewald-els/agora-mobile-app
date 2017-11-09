@@ -45,4 +45,5 @@ import { ProfileProvider } from "../providers/profile/profile.provider";
         ProfileProvider
     ]
 })
-export class AppModule {}
+export class AppModule {
+}

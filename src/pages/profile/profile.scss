@@ -3,16 +3,30 @@
 
     .profile__header {
 
+      border-top: 2px solid color($colors, primary);
       background-color: color($colors, dark);
+
+      display: flex;
+      align-items: center;
 
       .profile__header-avatar {
         float: left;
+
+        agora-sprite-hero-avatar {
+          .icon-hero {
+            border-radius: 50%;
+            border: 2px solid color($colors, primary);
+            margin: 15px;
+          }
+        }
       }
 
       .profile__header-name {
         float: left;
         color: color($colors, primary);
-        margin-left: 15px;
+        h2 {
+          margin: 0;
+        }
       }
 
       &:after {
@@ -30,6 +44,23 @@
       }
     }
 
+    .profile__match-history {
 
+      ion-select {
+        background: #efefef;
+        font-size: 1.25rem;
+        min-width: 100px;
+        height: 35px;
+        border-radius: 5px;
+        padding-right: 10px;
+      }
+
+    }
+
+    .profile__match-history-list {
+      ion-row {
+        align-items: center;
+      }
+    }
   }
 }

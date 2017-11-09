@@ -17,7 +17,7 @@ export class HeroSummaryPage {
     private heroBackground: string = '';
 
     constructor( public navCtrl: NavController, public navParams: NavParams, private heroProvider: HeroProvider, private loadingCtrl: LoadingController ) {
-        //this.heroId = this.navParams.get('heroId');
+        this.heroId = this.navParams.get('heroId');
         this.getHeroSummary();
     }
 

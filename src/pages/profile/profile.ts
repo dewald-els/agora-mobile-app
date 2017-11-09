@@ -7,6 +7,8 @@ import { ProfileProvider } from "../../providers/profile/profile.provider";
 import { PlayerProfile } from "../../interfaces/player-profile/player-profile.model";
 import { LEAGUES } from "../../static-models/leagues/leagues.static";
 import { League } from "../../interfaces/league/league.interface";
+import { Hero } from "../../interfaces/hero/hero";
+import { HeroProvider } from "../../providers/hero/hero.provider";
 
 @IonicPage()
 @Component({
@@ -20,17 +22,19 @@ export class ProfilePage {
     private leagues = LEAGUES;
     private currentLeague = {} as League;
     private loader;
+    private heroes = [] as Hero[];
+    private filterMatchesByHero : string = 'all';
 
     constructor( private navCtrl: NavController,
                  private popoverCtrl: PopoverController,
                  private accountProvider: AccountProvider,
                  private profileProvider: ProfileProvider,
+                 private heroProvider : HeroProvider,
                  private loadingCtrl : LoadingController) {
 
         this.account = this.accountProvider.getCachedProfile();
+        this.heroes = this.heroProvider.getCachedHeroes();
         this.getPlayerProfile();
-
-        console.log('Profile page');
     }
 
     async getPlayerProfile() {
@@ -46,7 +50,6 @@ export class ProfilePage {
     }
 
     showProfileMenu( event ) {
-
         let popover = this.popoverCtrl.create('ProfileMenuPopoverPage');
 
         popover.onDidDismiss(( data: string ) => {
