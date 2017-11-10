@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Hero } from "../../interfaces/hero/hero";
+import { HeroProvider } from "../../providers/hero/hero.provider";
 
 
 @IonicPage()
@@ -9,11 +11,11 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class MatchesPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
+    private heroes = [] as Hero[];
+    private filterMatchesByHero : string = 'all';
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad MatchesPage');
+  constructor(public navCtrl: NavController, public navParams: NavParams, private heroProvider : HeroProvider) {
+      this.heroes = this.heroProvider.getCachedHeroes();
   }
 
 }

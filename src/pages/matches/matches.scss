@@ -1,3 +1,21 @@
-page-matches {
+.ios, .md {
+  page-matches {
+    .profile__match-history {
 
+      ion-select {
+        background: #efefef;
+        font-size: 1.25rem;
+        min-width: 100px;
+        height: 35px;
+        border-radius: 5px;
+        padding-right: 10px;
+      }
+
+    }
+    .profile__match-history-list {
+      ion-row {
+        align-items: center;
+      }
+    }
+  }
 }

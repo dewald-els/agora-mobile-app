@@ -11,6 +11,19 @@
 
         <h2>Welcome to Agora</h2>
         <p>Let's get started by signing in with your Epic account.</p>
+
+        <ion-card [ngClass]="{'hide' : !availableProfile}">
+            <ion-item-divider>
+                Available profile
+            </ion-item-divider>
+            <button ion-item>
+                <ion-avatar item-start>
+                    <agora-sprite-hero-avatar [heroName]="'HeroData_TwinBlast'" [size]="32"></agora-sprite-hero-avatar>
+                </ion-avatar>
+                {{availableProfile.name}}
+            </button>
+        </ion-card>
+
     </div>
 
 </ion-content>

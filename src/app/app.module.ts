@@ -10,7 +10,6 @@ import { AgoraMobile } from './app.component';
 import { GemProvider } from '../providers/gem/gem.provider';
 import { CardProvider } from '../providers/card/card.provider';
 import { HeroProvider } from '../providers/hero/hero.provider';
-import { AccountProvider } from '../providers/account/account.provider';
 import { AgoraCacheProvider } from '../providers/agora-cache/agora-cache.provider';
 import { HttpModule } from "@angular/http";
 import { EpicAccountProvider } from "../providers/epic/epic-account.provider";
@@ -38,7 +37,6 @@ import { ProfileProvider } from "../providers/profile/profile.provider";
         GemProvider,
         CardProvider,
         HeroProvider,
-        AccountProvider,
         AgoraCacheProvider,
         EpicAccountProvider,
         SideMenuProvider,

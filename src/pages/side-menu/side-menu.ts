@@ -1,6 +1,6 @@
 import { Component, ViewChild } from "@angular/core";
 import { AlertController, IonicPage, MenuController, Nav } from "ionic-angular";
-import { AccountProvider } from "../../providers/account/account.provider";
+import { EpicAccountProvider } from "../../providers/epic/epic-account.provider";
 import { AccountLoginStatus } from "../../interfaces/account/account-login-status.interface";
 import { SideMenuProvider } from "../../providers/side-menu/side-menu.provider";
 
@@ -18,7 +18,7 @@ export class SideMenuPage {
     private menus = [];
     private profile: any = false;
 
-    constructor( private accountProvider: AccountProvider, private alertCtrl: AlertController, private menuCtrl: MenuController, private sideMenuProvider: SideMenuProvider ) {
+    constructor( private accountProvider: EpicAccountProvider, private alertCtrl: AlertController, private menuCtrl: MenuController, private sideMenuProvider: SideMenuProvider ) {
 
         this.profile = this.accountProvider.getCachedProfile();
         this.menus = this.sideMenuProvider.getAvailableMenus();

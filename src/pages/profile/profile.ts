@@ -1,7 +1,7 @@
 import { Component, ViewChild } from "@angular/core";
 import { IonicPage, LoadingController, NavController, PopoverController } from "ionic-angular";
 import { PROFILE_POPUP_ACTION } from "../../static-models/profile-popup-actions/profile-popup-actions.static";
-import { AccountProvider } from "../../providers/account/account.provider";
+import { EpicAccountProvider } from "../../providers/epic/epic-account.provider";
 import { EpicAccount } from "../../interfaces/account/epic-account.interface";
 import { ProfileProvider } from "../../providers/profile/profile.provider";
 import { PlayerProfile } from "../../interfaces/player-profile/player-profile.model";
@@ -22,18 +22,17 @@ export class ProfilePage {
     private leagues = LEAGUES;
     private currentLeague = {} as League;
     private loader;
-    private heroes = [] as Hero[];
-    private filterMatchesByHero : string = 'all';
+
 
     constructor( private navCtrl: NavController,
                  private popoverCtrl: PopoverController,
-                 private accountProvider: AccountProvider,
+                 private accountProvider: EpicAccountProvider,
                  private profileProvider: ProfileProvider,
                  private heroProvider : HeroProvider,
                  private loadingCtrl : LoadingController) {
 
         this.account = this.accountProvider.getCachedProfile();
-        this.heroes = this.heroProvider.getCachedHeroes();
+
         this.getPlayerProfile();
     }
 
@@ -48,6 +47,7 @@ export class ProfilePage {
         console.log(this.profile);
         this.loader.dismiss();
     }
+
 
     showProfileMenu( event ) {
         let popover = this.popoverCtrl.create('ProfileMenuPopoverPage');

@@ -13,4 +13,84 @@
 
 <ion-content padding>
 
+    <ion-card class="profile__match-history">
+
+        <ion-card-header>
+            Match history
+        </ion-card-header>
+
+        <ion-item>
+            <ion-label>Hero</ion-label>
+            <ion-select [(ngModel)]="filterMatchesByHero">
+                <ion-option value="all">All</ion-option>
+                <ion-option *ngFor="let hero of heroes" [value]="hero.slug">
+                    {{hero.name}}
+                </ion-option>
+            </ion-select>
+        </ion-item>
+
+    </ion-card>
+
+    <ion-card class="profile__match-history-list">
+
+        <ion-card-header>
+            Summary of last 20 games
+        </ion-card-header>
+
+        <ion-list>
+
+            <ion-item-divider>
+                <small>Victory</small>
+                <ion-badge color="secondary" item-end>+7 Elo</ion-badge>
+            </ion-item-divider>
+            <ion-item>
+                <ion-grid no-padding>
+                    <ion-row>
+                        <ion-col>
+                            <ion-avatar item-start>
+                                <agora-sprite-hero-avatar [heroName]="'HeroData_Sword'"
+                                                          [size]="32"></agora-sprite-hero-avatar>
+                            </ion-avatar>
+                            <p>Greystone</p>
+                        </ion-col>
+                        <ion-col text-center>
+                            <p>8.0 KDA</p>
+                            <p><b>5/1/3</b></p>
+                            <p><small>36%</small></p>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+            </ion-item>
+
+
+            <ion-item-divider>
+                <small>Defeat</small>
+                <ion-badge item-end color="danger">-7 Elo</ion-badge>
+            </ion-item-divider>
+            <ion-item>
+                <ion-grid no-padding>
+                    <ion-row>
+                        <ion-col>
+                            <ion-avatar item-start>
+                                <agora-sprite-hero-avatar [heroName]="'HeroData_Sword'"
+                                                          [size]="32"></agora-sprite-hero-avatar>
+                            </ion-avatar>
+                            <p>Greystone</p>
+                        </ion-col>
+                        <ion-col text-center>
+                            <p>8.0 KDA</p>
+                            <p><b>5/1/3</b></p>
+                            <p><small>36%</small></p>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+            </ion-item>
+
+        </ion-list>
+
+
+    </ion-card>
+
+
+
 </ion-content>

@@ -1,11 +1,14 @@
 import { Injectable } from "@angular/core";
 import { Http } from "@angular/http";
 import "rxjs/add/operator/toPromise";
+import { AgoraCacheProvider } from "../agora-cache/agora-cache.provider";
 
 @Injectable()
 export class ProfileProvider {
 
-    constructor( private http: Http ) {
+    private storageKey = 'profile';
+
+    constructor( private http: Http, private agoraCacheProvider : AgoraCacheProvider) {
 
     }
 
@@ -19,6 +22,10 @@ export class ProfileProvider {
             return null;
         }
 
+    }
+
+    public getCachedProfile() {
+        return this.agoraCacheProvider.getDataFromCache(this.storageKey);
     }
 
 }
