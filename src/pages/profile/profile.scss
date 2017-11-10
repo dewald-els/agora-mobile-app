@@ -42,6 +42,26 @@
         font-size: 2em;
         font-weight: bold;
       }
+      .profile__rank-item {
+        border-top: 1px solid color($colors, light);
+
+      }
+    }
+
+
+    .profile__hero-breakdown {
+
+      ion-item.item {
+        border-bottom: thin solid color($colors, light);
+      }
+
+      agora-sprite-hero-avatar {
+        .icon-hero {
+          border-radius: 50%;
+          border: 2px solid color($colors, primary);
+        }
+      }
+
     }
 
 

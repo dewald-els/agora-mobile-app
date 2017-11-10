@@ -17,7 +17,7 @@
 
 <ion-content>
 
-    <div class="profile__content" [ngClass]="{'hide' : !profile}">
+    <div class="profile__content" [ngClass]="{'hide' : ! profile}">
 
 
         <header class="profile__header">
@@ -35,24 +35,36 @@
 
         <ion-card class="profile__elo">
 
-            <ion-card-content>
+            <ion-card-header>
+                Elo
+            </ion-card-header>
 
-                <ion-grid>
-                    <ion-row>
-                        <ion-col col-4>
-                            <agora-sprite-league [league]="currentLeague.iconName"
-                                                 [spriteSize]="'md'"></agora-sprite-league>
-                        </ion-col>
-                        <ion-col>
-                            <h2 class="elo-text" [ngClass]="['elo-'+currentLeague.iconName]">{{profile?.getElo()}}</h2>
-                            <p>{{currentLeague.name}}</p>
-                        </ion-col>
-                    </ion-row>
-                </ion-grid>
+            <ion-list>
+                <ion-item>
+                    <ion-grid>
+                        <ion-row>
+                            <ion-col col-4>
+                                <agora-sprite-league [league]="currentLeague.iconName"
+                                                     [spriteSize]="'md'"></agora-sprite-league>
+                            </ion-col>
+                            <ion-col>
+                                <h2 class="elo-text" [ngClass]="['elo-'+currentLeague.iconName]">
+                                    {{profile?.getElo()}}</h2>
+                                <p>{{currentLeague.name}}</p>
+                            </ion-col>
+                        </ion-row>
+                    </ion-grid>
+                </ion-item>
 
-            </ion-card-content>
+                <ion-item class="profile__rank-item">
+                    <small>Rank</small>
+                    <small item-right>{{pvpStats.rank}} ({{pvpStats.percentile}}%)</small>
+                </ion-item>
+            </ion-list>
+
 
         </ion-card>
+
 
         <ion-card class="profile__season-stats">
 
@@ -63,16 +75,105 @@
             <ion-list>
                 <ion-item>
                     Win/Loss
-                    <span item-right>87 - 111 (44%)</span>
+                    <span item-right>{{pvpStats.wins}} - {{pvpStats.gamesPlayed - pvpStats.wins}} (44%)</span>
                 </ion-item>
 
                 <ion-item>
                     KDA
-                    <span item-right>684 / 736 / 659 (1.82)</span>
+                    <span item-right>{{pvpStats.kills}} / {{pvpStats.deaths}} / {{pvpStats.assists}} (1.82)</span>
+                </ion-item>
+
+                <ion-item>
+                    Towers
+                    <span item-right>{{pvpStats.towers}}</span>
                 </ion-item>
             </ion-list>
 
         </ion-card>
+
+
+        <ion-card>
+            <ion-card-header>
+                Lifetime stats
+            </ion-card-header>
+
+            <ion-list [ngClass]="{'hide' : !lifetimeStats }">
+                <ion-item>
+                    <p>Win rate (W/L)</p>
+                    <p item-end>
+                        <b>{{lifetimeStats?.pvp.games_won}} - {{lifetimeStats?.pvp.games_played - lifetimeStats?.pvp.games_won}}</b>
+                        ({{lifetimeStats?.pvp.winRatio}}%)
+                    </p>
+                </ion-item>
+                <ion-item>
+                    <p>KDA</p>
+                    <p item-end text-right>
+                        <b>{{lifetimeStats?.pvp.kdaRatio}}</b><br>
+                        {{lifetimeStats?.pvp.kills_hero}} / {{lifetimeStats?.pvp.deaths_hero}} / {{lifetimeStats?.pvp.assists_hero}} <br>
+                    </p>
+                </ion-item>
+                <ion-item>
+                    <p>Hero damage / game</p>
+                    <p item-end><b>{{lifetimeStats?.pvp.heroDamagePerGame}}</b><br></p>
+                </ion-item>
+                <ion-item>
+                    <p>Minion damage / game</p>
+                    <p item-end><b>{{lifetimeStats?.pvp.minionDmgPerGame}}</b><br></p>
+                </ion-item>
+                <ion-item>
+                    <p>Minion kills / game</p>
+                    <p item-end><b>{{lifetimeStats?.pvp.minionKillsPerGame}}</b><br></p>
+                </ion-item>
+                <ion-item>
+                    <p>Structure damage / game</p>
+                    <p item-end><b>{{lifetimeStats?.pvp.structureDmgPerGame}}</b><br></p>
+                </ion-item>
+                <ion-item>
+                    <p>Structures destroyed / game</p>
+                    <p item-end><b>{{lifetimeStats?.pvp.structureKillsPerGame}}</b><br></p>
+                </ion-item>
+            </ion-list>
+
+            <button ion-item (click)="loadLifetimeStats()"  [ngClass]="{'hide' : lifetimeStats }">
+                Load stats
+            </button>
+        </ion-card>
+
+
+        <ion-card class="profile__hero-breakdown">
+            <ion-card-header>
+                Hero breakdown
+            </ion-card-header>
+
+            <ion-list>
+                <ion-item *ngFor="let heroStat of pvpStats.heroes">
+
+                    <ion-avatar item-start>
+                        <agora-sprite-hero-avatar [size]="48" [heroName]="heroStat.hero"></agora-sprite-hero-avatar>
+                    </ion-avatar>
+
+                    <ion-grid no-padding>
+                        <ion-row>
+                            <ion-col>
+                                <horizontal-progress-bar [percentage]="heroStat.winRate"></horizontal-progress-bar>
+                            </ion-col>
+
+                        </ion-row>
+                        <ion-row>
+                            <ion-col>
+                                <small>W/L: {{heroStat.wins}} - {{heroStat.gamesPlayed - heroStat.wins}}</small>
+                            </ion-col>
+                            <ion-col text-right>
+                                <small>{{heroStat.kills}} / {{heroStat.deaths}} / {{heroStat.assists}}</small>
+                                <p>KDA: {{heroStat.kdaRate}}</p>
+                            </ion-col>
+                        </ion-row>
+                    </ion-grid>
+
+                </ion-item>
+            </ion-list>
+        </ion-card>
+
 
     </div>
 

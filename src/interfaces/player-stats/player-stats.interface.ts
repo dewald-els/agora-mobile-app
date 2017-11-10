@@ -1,3 +1,5 @@
+import { HeroStats } from "../hero/hero-stats.interface";
+
 export interface PlayerStats {
     mode: number;
     gamesPlayed: number;
@@ -9,5 +11,5 @@ export interface PlayerStats {
     towers: number;
     rank: number;
     percentile: number;
-    heroes: Array<any>;
+    heroes: Array<HeroStats>;
 }

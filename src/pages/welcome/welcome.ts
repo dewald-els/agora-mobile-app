@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { AlertController, IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AccountLoginStatus } from "../../interfaces/account/account-login-status.interface";
-import { AgoraCacheProvider } from "../../providers/agora-cache/agora-cache.provider";
 import { ProfileProvider } from "../../providers/profile/profile.provider";
 import { PlayerProfile } from "../../interfaces/player-profile/player-profile.model";
+import { EpicAccountProvider } from "../../providers/epic/epic-account.provider";
+import { AppProvider } from "../../providers/app/app.provider";
 
 @IonicPage()
 @Component({
@@ -14,11 +15,9 @@ export class WelcomePage {
 
     private availableProfile = {} as PlayerProfile;
 
-    constructor( public navCtrl: NavController, private alertCtrl: AlertController, private agoraCacheProvider: AgoraCacheProvider, private profileProvider : ProfileProvider) {
-        this.agoraCacheProvider.saveToCache('is-first-start', new Date().getTime().toString());
+    constructor( public navCtrl: NavController, private alertCtrl: AlertController, private appProvider: AppProvider, private accountProvider: EpicAccountProvider, private profileProvider: ProfileProvider ) {
+        this.appProvider.setFirstStartStatus();
         this.availableProfile = this.profileProvider.getCachedProfile();
-        console.log(this.availableProfile);
-
     }
 
     navigateToTabsPage( event ) {
@@ -27,21 +26,20 @@ export class WelcomePage {
         });
     }
 
-    loginStatus(event : AccountLoginStatus){
+    loginStatus( event: AccountLoginStatus ) {
 
-        if (event.result === false) {
-
+        if ( event.result === false ) {
             this.alertCtrl.create({
-                title:'Login unsuccessful',
+                title: 'Login unsuccessful',
                 subTitle: `That didn't work! \n${event.error.message}`,
-                buttons: ['Ok']
+                buttons: [ 'Ok' ]
             }).present();
-
         } else {
-            this.agoraCacheProvider.saveToCache('profile', event.account);
+            this.accountProvider.saveAccountToCache(event.epicAccount);
             this.navCtrl.setRoot('SideMenuPage', {}, {
                 animate: true
             });
         }
     }
+
 }

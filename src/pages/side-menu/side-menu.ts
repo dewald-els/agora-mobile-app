@@ -1,8 +1,9 @@
 import { Component, ViewChild } from "@angular/core";
 import { AlertController, IonicPage, MenuController, Nav } from "ionic-angular";
-import { EpicAccountProvider } from "../../providers/epic/epic-account.provider";
 import { AccountLoginStatus } from "../../interfaces/account/account-login-status.interface";
 import { SideMenuProvider } from "../../providers/side-menu/side-menu.provider";
+import { EpicAccountProvider } from "../../providers/epic/epic-account.provider";
+import { EpicAccount } from "../../interfaces/account/epic-account.interface";
 
 @IonicPage()
 @Component({
@@ -13,22 +14,36 @@ export class SideMenuPage {
 
     @ViewChild(Nav) nav: Nav;
 
-    rootPage: string = 'LeaderboardsPage';
+    rootPage: string = '';
 
     private menus = [];
-    private profile: any = false;
+    private epicAccount = {} as EpicAccount;
 
-    constructor( private accountProvider: EpicAccountProvider, private alertCtrl: AlertController, private menuCtrl: MenuController, private sideMenuProvider: SideMenuProvider ) {
+    constructor( private alertCtrl: AlertController,
+                 private menuCtrl: MenuController,
+                 private sideMenuProvider: SideMenuProvider,
+                 private accountProvider: EpicAccountProvider ) {
 
-        this.profile = this.accountProvider.getCachedProfile();
         this.menus = this.sideMenuProvider.getAvailableMenus();
 
-        if ( !this.profile ) {
-            this.rootPage = 'LeaderboardsPage';
-        } else {
-            this.rootPage = 'ProfilePage';
-        }
     }
+
+    ionViewDidLoad() {
+        this.checkForActiveLogin();
+    }
+
+    checkForActiveLogin() {
+        this.epicAccount = this.accountProvider.getCachedAccount();
+
+        if ( this.epicAccount ) {
+            console.log(this.epicAccount);
+            this.rootPage = 'ProfilePage'
+        } else {
+            this.rootPage = 'LeaderboardsPage';
+        }
+
+    }
+
 
     openPage( page: string ) {
         this.nav.setRoot(page);
@@ -46,8 +61,9 @@ export class SideMenuPage {
 
         } else {
 
-            this.accountProvider.saveToCache(event.account);
-            this.profile = event.account;
+            this.accountProvider.saveAccountToCache(event.epicAccount);
+            this.epicAccount = event.epicAccount;
+
             this.nav.setRoot('ProfilePage');
             this.menuCtrl.close('menu');
         }
@@ -56,7 +72,8 @@ export class SideMenuPage {
     signOut( event ) {
 
         this.accountProvider.logout();
-        this.profile = false;
+        this.epicAccount = null;
+
         this.nav.setRoot('LeaderboardsPage');
         this.menuCtrl.close();
     }

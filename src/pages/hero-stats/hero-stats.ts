@@ -4,6 +4,7 @@ import { HeroProvider } from "../../providers/hero/hero.provider";
 import { HeroStats } from "../../interfaces/hero/hero-stats.interface";
 import { Hero } from "../../interfaces/hero/hero";
 import { LEAGUES } from "../../static-models/leagues/leagues.static";
+import { StatsProvider } from "../../providers/stats/stats.provider";
 
 @IonicPage()
 @Component({
@@ -21,7 +22,7 @@ export class HeroStatsPage {
     private sortStatsBy: string = 'wins';
     private filterByLeague: string = 'all';
 
-    constructor( private loadingCtrl: LoadingController, private navCtrl: NavController, private heroProvider: HeroProvider ) {
+    constructor( private loadingCtrl: LoadingController, private navCtrl: NavController, private heroProvider: HeroProvider, private statsProvider : StatsProvider) {
         this.getHeroStats();
         // don't allow master to be listed as a filter.
         this.leagues.pop();
@@ -43,9 +44,11 @@ export class HeroStatsPage {
 
     private addHeroDataToStats() {
         this.heroStats.map(( heroStat: HeroStats ) => {
+            console.log(heroStat);
             heroStat.winRate = (heroStat.wins * 100).toFixed(0);
-            heroStat.kdaRate = ((heroStat.kills + heroStat.assists) / heroStat.deaths).toFixed(2);
-            heroStat.pickRate = ((heroStat.gamesPlayed / (this.totalHeroStats.gamesPlayed / 5)) * 100).toFixed(0);
+            heroStat.kdaRate = this.statsProvider.getKDARatio(heroStat.kills, heroStat.assists, heroStat.deaths);
+            heroStat.pickRate = this.statsProvider.getPickRatio(heroStat.gamesPlayed, this.totalHeroStats.gamesPlayed);
+
             // Add hero data (Image, name etc)
             heroStat.heroData = this.heroes.find(( hero: Hero ) => {
                 if ( hero.code === heroStat.hero ) return true;
@@ -66,61 +69,7 @@ export class HeroStatsPage {
     }
 
     private sortHeroStats() {
-
-        if ( this.sortStatsBy === 'wins' ) {
-            this.heroStats.sort(( a, b ): number => {
-
-                if ( a.wins < b.wins ) {
-                    return 1;
-                }
-                if ( a.wins > b.wins ) {
-                    return -1;
-                }
-
-                return 0;
-            });
-        }
-        else if ( this.sortStatsBy === 'picks' ) {
-            this.heroStats.sort(( a, b ): number => {
-
-                if ( a.gamesPlayed < b.gamesPlayed ) {
-                    return 1;
-                }
-                if ( a.gamesPlayed > b.gamesPlayed ) {
-                    return -1;
-                }
-
-                return 0;
-            });
-        }
-        else if ( this.sortStatsBy === 'kda' ) {
-            this.heroStats.sort(( a, b ): number => {
-
-                if ( a.kdaRate < b.kdaRate ) {
-                    return 1;
-                }
-                if ( a.kdaRate > b.kdaRate ) {
-                    return -1;
-                }
-
-                return 0;
-            });
-        }
-
-        else if ( this.sortStatsBy === 'name' ) {
-            this.heroStats.sort(( a, b ): number => {
-
-                if ( a.heroData.name > b.heroData.name ) {
-                    return 1;
-                }
-                if ( a.heroData.name < b.heroData.name ) {
-                    return -1;
-                }
-
-                return 0;
-            });
-        }
-
+        this.heroStats = this.heroProvider.sortBy(this.sortStatsBy, this.heroStats);
     }
 
     private filterHeroStatsByLeague( league ) {

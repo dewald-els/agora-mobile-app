@@ -7,7 +7,7 @@
     <ion-content class="side-menu__content">
         <ion-list no-border>
 
-            <ion-item-group [ngClass]="{'hide' : profile === false }">
+            <ion-item-group [ngClass]="{'hide' : ! epicAccount }">
                 <ion-item-divider color="light">Profile</ion-item-divider>
                 <button ion-item (click)="openPage(page.page)" *ngFor="let page of menus.userPages" menuToggle no-border>
                     <ion-icon name="{{page.icon}}" item-left></ion-icon>
@@ -36,9 +36,9 @@
     </ion-content>
 
 
-    <agora-login-footer [ngClass]="{'hide' : profile !== false }" (skipLoginEvent)="skipLogin($event)" (loginStatus)="loginStatus($event)" [showSkipButton]="false"></agora-login-footer>
+    <agora-login-footer [ngClass]="{'hide' : epicAccount }" (skipLoginEvent)="skipLogin($event)" (loginStatus)="loginStatus($event)" [showSkipButton]="false"></agora-login-footer>
 
-    <agora-logout-footer [ngClass]="{'hide' : profile === false }" (signOut)="signOut($event)"></agora-logout-footer>
+    <agora-logout-footer [ngClass]="{'hide' : ! epicAccount }" (signOut)="signOut($event)"></agora-logout-footer>
 </ion-menu>
 
 <ion-nav id="nav" #content [root]="rootPage" swipeBackEnabled="false"></ion-nav>

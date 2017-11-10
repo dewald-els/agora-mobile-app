@@ -2,6 +2,7 @@ import { PlayerStats } from "../player-stats/player-stats.interface";
 import { LEAGUE } from "../../static-models/leagues/leagues.static";
 
 export class PlayerProfile {
+
     id: number;
     name: string;
     donationTier: number;

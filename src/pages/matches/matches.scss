@@ -1,20 +1,46 @@
 .ios, .md {
   page-matches {
-    .profile__match-history {
+    .toolbar-select {
+      .item {
+        background: transparent;
+        color: #fff;
+      }
+      .item-block .item-inner {
+        border: none;
+      }
 
       ion-select {
-        background: #efefef;
+        background: #4a4a4a;
         font-size: 1.25rem;
         min-width: 100px;
-        height: 35px;
+
         border-radius: 5px;
         padding-right: 10px;
       }
-
     }
+
     .profile__match-history-list {
       ion-row {
         align-items: center;
+      }
+    }
+  }
+}
+.ios {
+  page-matches {
+    .toolbar-select {
+      ion-select {
+        height: 35px;
+      }
+    }
+  }
+}
+
+.md {
+  page-matches {
+    .toolbar-select {
+      ion-select {
+        height: 39px;
       }
     }
   }

@@ -10,7 +10,6 @@ export class EpicAccountProvider {
 
     private storageKey = 'epic_account';
     private clientId: string = '36afd031eee1443f9af0e5c08cc9b152';
-    private account: EpicAccount;
     private epicLoginUrl: string = 'accounts.epicgames.com/login';
 
     constructor( private http: Http, private agoraCacheProvider: AgoraCacheProvider ) {
@@ -30,7 +29,7 @@ export class EpicAccountProvider {
             let response = await this.http.get(`https://api.agora.gg/v1/epic/authorize/${code}?env=prod`).toPromise();
             return {
                 result: true,
-                account: <EpicAccount>response.json()
+                epicAccount: <EpicAccount>response.json()
             };
         } catch ( e ) {
             return {
@@ -40,7 +39,7 @@ export class EpicAccountProvider {
         }
     }
 
-    public getCachedProfile() {
+    public getCachedAccount() {
         return this.agoraCacheProvider.getDataFromCache(this.storageKey);
     }
 
@@ -48,12 +47,7 @@ export class EpicAccountProvider {
         this.agoraCacheProvider.deleteFromCache(this.storageKey);
     }
 
-    public saveToCache( profile: EpicAccount ) {
+    public saveAccountToCache( profile: EpicAccount ) {
         this.agoraCacheProvider.saveToCache(this.storageKey, profile);
     }
-
-    public isFirstStart() {
-        return this.agoraCacheProvider.getDataFromCache('is-first-start')
-    }
-
 }

@@ -64,4 +64,63 @@ export class HeroProvider extends BaseProvider {
         let name = affinityName.toLowerCase();
         return `assets/imgs/affinities/affinity-${name}.png`;
     }
+
+    public sortBy( sortBy: string, heroStats: HeroStats[] ) {
+
+        if ( sortBy === 'wins' ) {
+            heroStats.sort(( a, b ): number => {
+
+                if ( a.wins < b.wins ) {
+                    return 1;
+                }
+                if ( a.wins > b.wins ) {
+                    return -1;
+                }
+
+                return 0;
+            });
+        }
+        else if ( sortBy === 'picks' ) {
+            heroStats.sort(( a, b ): number => {
+
+                if ( a.gamesPlayed < b.gamesPlayed ) {
+                    return 1;
+                }
+                if ( a.gamesPlayed > b.gamesPlayed ) {
+                    return -1;
+                }
+
+                return 0;
+            });
+        }
+        else if ( sortBy === 'kda' ) {
+            heroStats.sort(( a, b ): number => {
+
+                if ( a.kdaRate < b.kdaRate ) {
+                    return 1;
+                }
+                if ( a.kdaRate > b.kdaRate ) {
+                    return -1;
+                }
+
+                return 0;
+            });
+        }
+        else if ( sortBy === 'name' ) {
+            heroStats.sort(( a, b ): number => {
+
+                if ( a.heroData.name > b.heroData.name ) {
+                    return 1;
+                }
+                if ( a.heroData.name < b.heroData.name ) {
+                    return -1;
+                }
+
+                return 0;
+            });
+        }
+
+        return heroStats;
+    }
+
 }

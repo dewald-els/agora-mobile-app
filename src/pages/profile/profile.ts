@@ -9,6 +9,10 @@ import { LEAGUES } from "../../static-models/leagues/leagues.static";
 import { League } from "../../interfaces/league/league.interface";
 import { Hero } from "../../interfaces/hero/hero";
 import { HeroProvider } from "../../providers/hero/hero.provider";
+import { PlayerStats } from "../../interfaces/player-stats/player-stats.interface";
+import { HeroStats } from "../../interfaces/hero/hero-stats.interface";
+import { LifetimeStats } from "../../interfaces/player-stats/lifetime-stats.interface";
+import { StatsProvider } from "../../providers/stats/stats.provider";
 
 @IonicPage()
 @Component({
@@ -17,35 +21,63 @@ import { HeroProvider } from "../../providers/hero/hero.provider";
 })
 export class ProfilePage {
 
-    private account: EpicAccount;
+    private epicAccount = {} as EpicAccount;
     private profile: PlayerProfile;
+    private pvpStats = {} as PlayerStats;
+    private lifetimeStats = null as LifetimeStats;
+
     private leagues = LEAGUES;
     private currentLeague = {} as League;
     private loader;
-
 
     constructor( private navCtrl: NavController,
                  private popoverCtrl: PopoverController,
                  private accountProvider: EpicAccountProvider,
                  private profileProvider: ProfileProvider,
-                 private heroProvider : HeroProvider,
-                 private loadingCtrl : LoadingController) {
+                 private heroProvider: HeroProvider,
+                 private loadingCtrl: LoadingController,
+                 private statsProvider: StatsProvider ) {
 
-        this.account = this.accountProvider.getCachedProfile();
+        this.epicAccount = this.accountProvider.getCachedAccount();
 
+    }
+
+    private async getPlayerProfile() {
+        let profile = await this.profileProvider.getProfile(this.epicAccount.playerId);
+        if ( profile ) {
+            this.profile = new PlayerProfile(profile);
+            this.currentLeague = this.leagues[ this.profile.calculateProfileLeague() ];
+            this.pvpStats = this.profile.stats[ 0 ];
+            this.pvpStats.percentile = <number>this.pvpStats.percentile.toFixed(2);
+            this.pvpStats.heroes.forEach(( stat: HeroStats ) => {
+                stat.winRate = Math.round(this.statsProvider.getWinRatio(stat.wins, stat.gamesPlayed));
+                stat.kdaRate = this.statsProvider.getKDARatio(stat.kills, stat.assists, stat.deaths);
+            });
+
+            this.pvpStats.heroes = this.heroProvider.sortBy('picks', this.pvpStats.heroes);
+
+
+        }
+        console.log(this.profile);
+    }
+
+    ionViewDidLoad() {
         this.getPlayerProfile();
     }
 
-    async getPlayerProfile() {
-        this.loader = this.loadingCtrl.create({
-            content: 'Loading your profile...'
-        });
-        this.loader.present();
-        let profile = await this.profileProvider.getProfile(this.account.playerId);
-        this.profile = new PlayerProfile(profile);
-        this.currentLeague = this.leagues[ this.profile.calculateProfileLeague() ];
-        console.log(this.profile);
-        this.loader.dismiss();
+    async loadLifetimeStats() {
+        this.lifetimeStats = await this.profileProvider.getLifetimeStats(this.profile.accountGuid);
+        this.lifetimeStats.pvp.kdaRatio = this.statsProvider.getKDARatio(this.lifetimeStats.pvp.kills_hero, this.lifetimeStats.pvp.assists_hero, this.lifetimeStats.pvp.deaths_hero);
+        this.lifetimeStats.pvp.winRatio = this.statsProvider.getWinRatio(this.lifetimeStats.pvp.games_won, this.lifetimeStats.pvp.games_played,0);
+        this.lifetimeStats.pvp.heroDamagePerGame = this.statsProvider.getRatio(this.lifetimeStats.pvp.damage_done_hero, this.lifetimeStats.pvp.games_played, 0);
+        this.lifetimeStats.pvp.minionDmgPerGame = this.statsProvider.getRatio(this.lifetimeStats.pvp.damage_done_minons, this.lifetimeStats.pvp.games_played, 0);
+        this.lifetimeStats.pvp.minionKillsPerGame = this.statsProvider.getRatio(this.lifetimeStats.pvp.kills_minions, this.lifetimeStats.pvp.games_played, 2);
+        this.lifetimeStats.pvp.structureDmgPerGame = this.statsProvider.getRatio(this.lifetimeStats.pvp.damage_done_structures, this.lifetimeStats.pvp.games_played, 0);
+        this.lifetimeStats.pvp.structureKillsPerGame = this.statsProvider.getRatio(
+            this.lifetimeStats.pvp.kills_towers + this.lifetimeStats.pvp.kills_inhibitors + this.lifetimeStats.pvp.kills_core,
+            this.lifetimeStats.pvp.games_played,
+            2);
+        console.log(this.lifetimeStats);
     }
 
 
