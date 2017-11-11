@@ -26,7 +26,6 @@ export class MatchesPage {
 
         this.account = this.accountProvider.getCachedAccount();
 
-
         this.loader = this.loadingCtrl.create({
             content: 'Loading your matches...'
         });

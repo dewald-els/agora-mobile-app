@@ -18,6 +18,7 @@ export class MatchHistoryItemComponent implements OnInit {
     private profileTeamPlayer: MatchTeamPlayer;
     private profileTeamPlayerIndex: number = 0;
     private profileTeamTotalKills: number = 0;
+    private profileTeamPlayerEloChange : number = 0;
 
     constructor( private statsProvider: StatsProvider ) {
     }
@@ -53,12 +54,10 @@ export class MatchHistoryItemComponent implements OnInit {
             this.profileTeamTotalKills += player.kills;
         });
 
-        console.log(this.profileTeamPlayer.kills + this.profileTeamPlayer.assists);
-        console.log(this.profileTeamTotalKills);
-
 
         this.profileTeamPlayer.kdaRatio = this.statsProvider.getKDARatio(this.profileTeamPlayer.kills, this.profileTeamPlayer.assists, this.profileTeamPlayer.deaths);
         this.profileTeamPlayer.killParticipation = this.statsProvider.getRatio(this.profileTeamPlayer.kills + this.profileTeamPlayer.assists, this.profileTeamTotalKills) * 100;
+
 
     }
 }
