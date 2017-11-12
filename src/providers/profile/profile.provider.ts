@@ -14,7 +14,7 @@ export class ProfileProvider {
 
     }
 
-    public async getProfile( playerId: number, season?: string ) {
+    public async getProfile( playerId: string, season?: string ) {
 
         try {
             const response = await this.http.get(`https://api.agora.gg/v1/players/${playerId}?season=3`).toPromise();

@@ -19,13 +19,27 @@
       }
     }
 
-    .profile__match-history-list {
-      ion-row {
-        align-items: center;
-      }
+  }
+
+  agora-sprite-hero-avatar {
+    .icon-hero {
+      border-radius: 50%;
+      border: solid 2px color($colors, primary);
     }
   }
+
+  .match__victory-divider {
+    color: color($colors, secondary);
+    border-left: 3px solid color($colors, secondary);
+  }
+
+  .match__defeat-divider {
+    color: color($colors, danger);
+    border-left: 3px solid color($colors, danger);
+  }
+
 }
+
 .ios {
   page-matches {
     .toolbar-select {

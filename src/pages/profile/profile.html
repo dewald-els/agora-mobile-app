@@ -49,7 +49,8 @@
                             </ion-col>
                             <ion-col>
                                 <h2 class="elo-text" [ngClass]="['elo-'+currentLeague.iconName]">
-                                    {{profile?.getElo()}}</h2>
+                                    {{profileElo[0]}}.<small>{{profileElo[1]}}</small>
+                                </h2>
                                 <p>{{currentLeague.name}}</p>
                             </ion-col>
                         </ion-row>
@@ -92,49 +93,51 @@
         </ion-card>
 
 
-        <ion-card>
+        <ion-card class="profile_lifetime-stats">
             <ion-card-header>
                 Lifetime stats
             </ion-card-header>
 
-            <ion-list [ngClass]="{'hide' : !lifetimeStats }">
+            <ion-list *ngIf="lifetimeStats">
                 <ion-item>
                     <p>Win rate (W/L)</p>
                     <p item-end>
-                        <b>{{lifetimeStats?.pvp.games_won}} - {{lifetimeStats?.pvp.games_played - lifetimeStats?.pvp.games_won}}</b>
-                        ({{lifetimeStats?.pvp.winRatio}}%)
+                        <b>{{lifetimeStats?.pvp.games_won}} - {{lifetimeStats?.pvp.games_played -
+                            lifetimeStats?.pvp.games_won}}</b>
+                        ({{lifetimeStats?.pvp.winRatio | toFixed : 0}}%)
                     </p>
                 </ion-item>
                 <ion-item>
                     <p>KDA</p>
                     <p item-end text-right>
-                        <b>{{lifetimeStats?.pvp.kdaRatio}}</b><br>
-                        {{lifetimeStats?.pvp.kills_hero}} / {{lifetimeStats?.pvp.deaths_hero}} / {{lifetimeStats?.pvp.assists_hero}} <br>
+                        <b>{{lifetimeStats?.pvp.kdaRatio | toFixed : 2}}</b><br>
+                        {{lifetimeStats?.pvp.kills_hero}} / {{lifetimeStats?.pvp.deaths_hero}} /
+                        {{lifetimeStats?.pvp.assists_hero}} <br>
                     </p>
                 </ion-item>
                 <ion-item>
                     <p>Hero damage / game</p>
-                    <p item-end><b>{{lifetimeStats?.pvp.heroDamagePerGame}}</b><br></p>
+                    <p item-end><b>{{lifetimeStats?.pvp.heroDamagePerGame | toFixed : 0}}</b><br></p>
                 </ion-item>
                 <ion-item>
                     <p>Minion damage / game</p>
-                    <p item-end><b>{{lifetimeStats?.pvp.minionDmgPerGame}}</b><br></p>
+                    <p item-end><b>{{lifetimeStats?.pvp.minionDmgPerGame | toFixed : 0}}</b><br></p>
                 </ion-item>
                 <ion-item>
                     <p>Minion kills / game</p>
-                    <p item-end><b>{{lifetimeStats?.pvp.minionKillsPerGame}}</b><br></p>
+                    <p item-end><b>{{lifetimeStats?.pvp.minionKillsPerGame | toFixed : 0}}</b><br></p>
                 </ion-item>
                 <ion-item>
                     <p>Structure damage / game</p>
-                    <p item-end><b>{{lifetimeStats?.pvp.structureDmgPerGame}}</b><br></p>
+                    <p item-end><b>{{lifetimeStats?.pvp.structureDmgPerGame | toFixed : 0}}</b><br></p>
                 </ion-item>
                 <ion-item>
                     <p>Structures destroyed / game</p>
-                    <p item-end><b>{{lifetimeStats?.pvp.structureKillsPerGame}}</b><br></p>
+                    <p item-end><b>{{lifetimeStats?.pvp.structureKillsPerGame | toFixed : 2}}</b><br></p>
                 </ion-item>
             </ion-list>
 
-            <button ion-item (click)="loadLifetimeStats()"  [ngClass]="{'hide' : lifetimeStats }">
+            <button ion-item (click)="loadLifetimeStats()" [ngClass]="{'hide' : lifetimeStats }">
                 Load stats
             </button>
         </ion-card>
@@ -165,7 +168,7 @@
                             </ion-col>
                             <ion-col text-right>
                                 <small>{{heroStat.kills}} / {{heroStat.deaths}} / {{heroStat.assists}}</small>
-                                <p>KDA: {{heroStat.kdaRate}}</p>
+                                <p>KDA: {{heroStat.kdaRate | toFixed: 2}}</p>
                             </ion-col>
                         </ion-row>
                     </ion-grid>
@@ -175,6 +178,12 @@
         </ion-card>
 
 
+    </div>
+
+    <div class="profile__loading" [ngClass]="{'hide' : profile}" padding text-center>
+        <br><br>
+        <ion-spinner></ion-spinner>
+        <p>Loading profile...</p>
     </div>
 
 

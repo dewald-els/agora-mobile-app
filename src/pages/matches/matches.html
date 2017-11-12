@@ -12,9 +12,9 @@
     <ion-toolbar color="dark" class="toolbar-select">
         <ion-item>
             <ion-label>Hero</ion-label>
-            <ion-select [(ngModel)]="filterMatchesByHero">
+            <ion-select [(ngModel)]="filterMatchesByHero" (ionChange)="applyHeroFilter()">
                 <ion-option value="all">All</ion-option>
-                <ion-option *ngFor="let hero of heroes" [value]="hero.slug">
+                <ion-option *ngFor="let hero of heroes" [value]="hero.code">
                     {{hero.name}}
                 </ion-option>
             </ion-select>
@@ -26,12 +26,47 @@
 
 <ion-content>
 
-    <ion-list>
+    <ion-card *ngFor="let match of filteredMatches">
 
-        <match-history-item [inMatch]="match" *ngFor="let match of matches" [inHeroes]="heroes" [inProfileId]="account.playerId"></match-history-item>
+        <ion-item-divider *ngIf="match.playerTeamIndex === match.winningTeam; else defeat"
+                          class="match__victory-divider">
+            <b>Victory</b>
+            <ion-badge item-right color="secondary">+7 Elo</ion-badge>
+        </ion-item-divider>
 
-    </ion-list>
+        <ng-template #defeat>
+            <ion-item-divider class="match__defeat-divider">
+                <b>Defeat</b>
+                <ion-badge item-right color="danger">-7 Elo</ion-badge>
+            </ion-item-divider>
+        </ng-template>
+
+        <button ion-item>
+            <ion-avatar item-start>
+                <agora-sprite-hero-avatar [size]="48" [heroName]="match.player.hero"></agora-sprite-hero-avatar>
+            </ion-avatar>
 
 
+            <h3>{{match.player.kdaRatio | toFixed : 2}} KDA</h3>
+            <h2>{{match.player.kills}} / {{match.player.deaths}} / {{match.player.assists}}</h2>
+            <p>{{match.player.killParticipation | toFixed : 0}}% : Kill participation </p>
+
+        </button>
+        <ion-item-divider>
+            <small>{{match.createdAt | date:"MMM dd, y H:mm"}}</small>
+            <small item-right>Duration: {{match.length | duration}}</small>
+        </ion-item-divider>
+    </ion-card>
+
+    <ion-card *ngIf="filteredMatches.length === 0">
+        <ion-card-content>
+            <p>Whoops! Doesn't look like there are any matches.</p>
+            <br>
+            <button round ion-button outline block (click)="clearHeroFilter()"
+                    [ngClass]="{'hide':filterMatchesByHero === 'all'}">
+                Clear filter
+            </button>
+        </ion-card-content>
+    </ion-card>
 
 </ion-content>

@@ -1,6 +1,6 @@
 import { MatchTeamPlayer } from "./match-team-player.interface";
 
-export interface Match{
+export interface Match {
 
     completed: boolean;
     createdAt: string;
@@ -9,4 +9,7 @@ export interface Match{
     mode: number;
     winningTeam: number;
     teams: Array<Array<MatchTeamPlayer>>;
+    player?: MatchTeamPlayer
+    playerTeamIndex?: number;
+    playerTeamKills? : number;
 }

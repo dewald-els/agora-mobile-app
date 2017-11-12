@@ -45,7 +45,7 @@ export class HeroStatsPage {
     private addHeroDataToStats() {
         this.heroStats.map(( heroStat: HeroStats ) => {
             console.log(heroStat);
-            heroStat.winRate = (heroStat.wins * 100).toFixed(0);
+            heroStat.winRate = Math.round(heroStat.wins * 100);
             heroStat.kdaRate = this.statsProvider.getKDARatio(heroStat.kills, heroStat.assists, heroStat.deaths);
             heroStat.pickRate = this.statsProvider.getPickRatio(heroStat.gamesPlayed, this.totalHeroStats.gamesPlayed);
 

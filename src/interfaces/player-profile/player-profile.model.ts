@@ -31,8 +31,8 @@ export class PlayerProfile {
      * Get the current ELO with 2 decimal places.
      * @returns {string}
      */
-    getElo(): string {
-        return this.stats[ 0 ].elo.toFixed(2);
+    getElo(): number {
+        return this.stats[ 0 ].elo;
     }
 
     /**
@@ -55,6 +55,7 @@ export class PlayerProfile {
         } else {
             return LEAGUE.NONE;
         }
+
     }
 
 }

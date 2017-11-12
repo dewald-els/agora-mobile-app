@@ -8,7 +8,6 @@ import { HorizontalProgressBarComponent } from './horizontal-progress-bar/horizo
 import { HeroStatItemComponent } from "./hero-stat-item/hero-stat-item.component";
 import { AffinityIconComponent } from "./affinity-icon/affinity-icon.component";
 import { AbilityListCardComponent } from './ability-list-card/ability-list-card.component';
-import { MatchHistoryItemComponent } from "./match-history-item/match-history-item.component";
 
 @NgModule({
     declarations: [
@@ -19,8 +18,7 @@ import { MatchHistoryItemComponent } from "./match-history-item/match-history-it
         HorizontalProgressBarComponent,
         HeroStatItemComponent,
         AffinityIconComponent,
-        AbilityListCardComponent,
-        MatchHistoryItemComponent
+        AbilityListCardComponent
     ],
     imports: [ IonicModule ],
     exports: [
@@ -31,8 +29,7 @@ import { MatchHistoryItemComponent } from "./match-history-item/match-history-it
         HorizontalProgressBarComponent,
         HeroStatItemComponent,
         AffinityIconComponent,
-        AbilityListCardComponent,
-        MatchHistoryItemComponent
+        AbilityListCardComponent
     ]
 })
 export class ComponentsModule {

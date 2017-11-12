@@ -6,5 +6,5 @@ export interface EpicAccount {
     expiresAt: string;
     id: number;
     name: string;
-    playerId: number;
+    playerId: string;
 }

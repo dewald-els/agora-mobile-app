@@ -3,19 +3,22 @@ import { Injectable } from "@angular/core";
 @Injectable()
 export class StatsProvider {
 
-    public getWinRatio( wins: number, gamesPlayed: number, decimals?: number = 2 ) {
-        return (wins / gamesPlayed * 100).toFixed(decimals);
+    public getWinRatio( wins: number, gamesPlayed: number ) {
+        return (wins / gamesPlayed * 100);
     }
 
     public getKDARatio( kills: number, assists: number, deaths: number ) {
-        return ((kills + assists) / deaths).toFixed(2);
+
+        if ( deaths == 0 ) deaths = 1;
+
+        return ((kills + assists) / deaths);
     }
 
     public getPickRatio( gamesPlayed: number, totalGamesPlayed: number ) {
-        return ((gamesPlayed / (totalGamesPlayed / 5)) * 100).toFixed(0);
+        return ((gamesPlayed / (totalGamesPlayed / 5)) * 100);
     }
 
-    public getRatio( ratio: number, of: number, decimal? = 2 ) {
-        return (ratio / of).toFixed(decimal);
+    public getRatio( ratio: number, of: number ) {
+        return (ratio / of);
     }
 }

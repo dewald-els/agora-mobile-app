@@ -3,7 +3,7 @@ export interface Ability {
     description: string;
     icon: string;
     maxLevel: number;
-    modifiersByLevel: Array;
+    modifiersByLevel: any[];
     name: string;
     shortDescription: string;
     type: string;

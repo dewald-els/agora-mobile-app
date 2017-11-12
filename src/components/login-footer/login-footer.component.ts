@@ -46,6 +46,10 @@ export class LoginFooterComponent {
         });
 
         browserLogin.on('loadstop').subscribe(( event: InAppBrowserEvent ) => {
+
+            console.log('loadstop');
+            console.log(event);
+
             if ( event.url.indexOf(epicLoginUrl) > -1 ) {
                 loader.dismiss();
                 browserLogin.show();
@@ -54,16 +58,23 @@ export class LoginFooterComponent {
 
         browserLogin.on('loadstart').subscribe(( event: InAppBrowserEvent ) => {
 
+            console.log('loadstart');
+            console.log(event);
+
             // Successful login.
-            if ( event.url.indexOf('?code=') > -1 ) {
-                let url = new URL(event.url);
-                let code = url.searchParams.get("code");
+            if ( event.url.indexOf('agora.gg/login?code') > -1 ) {
+
+                let code = this.getParameterByName('code', event.url);
                 browserLogin.close();
                 this.authorizeAccount(code);
             }
         });
 
-        browserLogin.on('exit').subscribe(() => {
+        browserLogin.on('exit').subscribe(( event ) => {
+
+            console.log('exit');
+            console.log(event);
+
             try {
                 loader.dismiss();
             } catch ( e ) {
@@ -82,6 +93,18 @@ export class LoginFooterComponent {
         let response = await this.epicAccountProvider.authorizeLogin(code);
         loader.dismiss();
         this.loginStatus.emit(response);
+    }
+
+    function
+
+    getParameterByName( name, url ) {
+        if ( !url ) url = window.location.href;
+        name = name.replace(/[\[\]]/g, "\\$&");
+        let regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+            results = regex.exec(url);
+        if ( !results ) return null;
+        if ( !results[ 2 ] ) return '';
+        return decodeURIComponent(results[ 2 ].replace(/\+/g, " "));
     }
 
 }
