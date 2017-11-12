@@ -95,8 +95,6 @@ export class LoginFooterComponent {
         this.loginStatus.emit(response);
     }
 
-    function
-
     getParameterByName( name, url ) {
         if ( !url ) url = window.location.href;
         name = name.replace(/[\[\]]/g, "\\$&");

@@ -12,7 +12,6 @@ import { AppProvider } from "../../providers/app/app.provider";
     templateUrl: 'welcome.html',
 })
 export class WelcomePage {
-
     private availableProfile = {} as PlayerProfile;
 
     constructor( public navCtrl: NavController, private alertCtrl: AlertController, private appProvider: AppProvider, private accountProvider: EpicAccountProvider, private profileProvider: ProfileProvider ) {
@@ -27,7 +26,6 @@ export class WelcomePage {
     }
 
     loginStatus( event: AccountLoginStatus ) {
-
         if ( event.result === false ) {
             this.alertCtrl.create({
                 title: 'Login unsuccessful',

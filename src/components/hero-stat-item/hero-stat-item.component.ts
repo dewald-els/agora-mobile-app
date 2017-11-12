@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, Pipe } from '@angular/core';
 import { HeroStats } from "../../interfaces/hero/hero-stats.interface";
 
 @Component({

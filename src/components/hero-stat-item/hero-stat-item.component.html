@@ -20,11 +20,11 @@
             <ion-col text-center>
                 <small>PICK</small>
                 <horizontal-progress-bar
-                        [percentage]="heroStat.pickRate"></horizontal-progress-bar>
+                        [percentage]="heroStat.pickRate | toFixed : 0"></horizontal-progress-bar>
             </ion-col>
             <ion-col text-center>
                 <small style="display: block">KDA</small>
-                <span style="display: block">{{heroStat.kdaRate}}</span>
+                <span style="display: block">{{heroStat.kdaRate | toFixed:2}}</span>
                 <small>{{heroStat.kills.toFixed(0)}} / {{heroStat.deaths.toFixed(0)}} /
                     {{heroStat.assists.toFixed(0)}}
                 </small>
