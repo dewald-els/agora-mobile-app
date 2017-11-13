@@ -1,4 +1,5 @@
 import { MatchTeamPlayer } from "./match-team-player.interface";
+import { MatchTeamStats } from "./match-team-stats.interface";
 
 export interface Match {
 
@@ -12,4 +13,5 @@ export interface Match {
     player?: MatchTeamPlayer
     playerTeamIndex?: number;
     playerTeamKills? : number;
+    teamStats? : Array<MatchTeamStats>;
 }

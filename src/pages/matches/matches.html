@@ -11,7 +11,10 @@
 
     <ion-toolbar color="dark" class="toolbar-select">
         <ion-item>
-            <ion-label>Hero</ion-label>
+            <ion-label>
+                <ion-icon name="funnel" color="primary"></ion-icon>
+                Hero
+            </ion-label>
             <ion-select [(ngModel)]="filterMatchesByHero" (ionChange)="applyHeroFilter()">
                 <ion-option value="all">All</ion-option>
                 <ion-option *ngFor="let hero of heroes" [value]="hero.code">
@@ -41,7 +44,7 @@
             </ion-item-divider>
         </ng-template>
 
-        <button ion-item>
+        <button ion-item (click)="goToMatchSummary(match)">
             <ion-avatar item-start>
                 <agora-sprite-hero-avatar [size]="48" [heroName]="match.player.hero"></agora-sprite-hero-avatar>
             </ion-avatar>

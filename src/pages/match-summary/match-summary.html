@@ -1,0 +1,110 @@
+<ion-header>
+
+    <ion-navbar color="dark">
+        <ion-title>Match summary</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+
+
+    <div *ngIf="heroes.length && match.id">
+
+        <ion-list>
+            <ion-item-divider color="dark">
+                <small>Match replay Id:</small>
+            </ion-item-divider>
+            <ion-item text-wrap>
+                <small>{{match.id}}</small>
+            </ion-item>
+        </ion-list>
+        <ion-card *ngFor="let team of match.teams; let i = index;">
+            <ion-item-divider color="dark">
+                Team {{i+1}}
+                <ion-badge item-right color="secondary" *ngIf="match.winningTeam === i">Victory</ion-badge>
+                <ion-badge item-right color="danger" *ngIf="match.winningTeam !== i">Defeated</ion-badge>
+            </ion-item-divider>
+
+            <div *ngFor="let player of match.teams[i]">
+
+                <ion-item-divider color="light">
+                    <small>
+                        <ion-icon name="contact" *ngIf="player.name === match.player.name"></ion-icon>&nbsp;
+                        {{player.name}}
+                    </small>
+                    <small item-right><b>{{player.heroData.name}}</b>&nbsp;</small>
+                </ion-item-divider>
+
+                <ion-item>
+                    <ion-avatar item-start>
+                        <agora-sprite-hero-avatar [size]="48" [heroName]="player.hero"></agora-sprite-hero-avatar>
+                    </ion-avatar>
+
+                    <h3>
+                        <agora-sprite-league [league]="player.league" [spriteSize]="'sm'"></agora-sprite-league>
+                        {{player.elo}}
+                    </h3>
+                    <p>KDA: {{player.kills}} / {{player.deaths}} / {{player.assists}} - ({{player.kdaRatio | toFixed :
+                        2}})</p>
+                </ion-item>
+
+            </div>
+
+            <ion-item-divider color="light">
+                Team {{i+1}} summary
+            </ion-item-divider>
+            <ion-item>
+                ELO
+                <ion-badge item-right>{{match.teamStats[i].elo}}</ion-badge>
+            </ion-item>
+            <ion-item>
+                KDA
+                <ion-badge item-right>
+                    {{match.teamStats[i].kills}} / {{match.teamStats[i].deaths}} / {{match.teamStats[i].assists}}
+                </ion-badge>
+            </ion-item>
+
+            <ion-item>
+                Hero damage
+                <ion-badge item-right>
+                    {{match.teamStats[i].heroDamage}}
+                </ion-badge>
+            </ion-item>
+
+            <ion-item>
+                Tower damage
+                <ion-badge item-right>
+                    {{match.teamStats[i].towerDamage}}
+                </ion-badge>
+            </ion-item>
+
+            <ion-item>
+                Jungle damage
+                <ion-badge item-right>
+                    {{match.teamStats[i].jungleDamage}}
+                </ion-badge>
+            </ion-item>
+
+            <ion-item>
+                Minion damage
+                <ion-badge item-right>
+                    {{match.teamStats[i].minionDamage}}
+                </ion-badge>
+            </ion-item>
+
+            <ion-item>
+                Total damage
+                <ion-badge item-right>
+                    {{match.teamStats[i].totalDamage}}
+                </ion-badge>
+            </ion-item>
+
+        </ion-card>
+
+
+    </div>
+
+
+</ion-content>

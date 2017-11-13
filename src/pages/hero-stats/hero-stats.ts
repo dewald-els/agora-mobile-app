@@ -42,7 +42,6 @@ export class HeroStatsPage {
         loader.dismiss();
     }
 
-
     private addHeroDataToStats() {
         this.heroStats.map(( heroStat: HeroStats ) => {
             console.log(heroStat);

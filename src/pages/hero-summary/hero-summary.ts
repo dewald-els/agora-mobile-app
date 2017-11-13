@@ -31,7 +31,7 @@ export class HeroSummaryPage {
         loader.present();
 
         this.hero = await this.heroProvider.getHeroSummary(this.heroId);
-        let heroes = this.heroProvider.getCachedHeroes();
+        let heroes = await this.heroProvider.getHeroes();
 
         heroes.map(( hero: Hero ) => {
             if ( hero.id == this.hero.id ) {

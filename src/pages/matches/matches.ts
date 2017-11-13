@@ -32,37 +32,22 @@ export class MatchesPage {
                  private statsProvider: StatsProvider ) {
 
         this.account = this.accountProvider.getCachedAccount();
-
         this.loader = this.loadingCtrl.create({
             content: 'Loading your matches...'
         });
-
         this.loader.present();
 
-        this.heroes = this.heroProvider.getCachedHeroes();
-
-        if ( !this.heroes ) {
-            this.getAllHeroes();
-        }
-
-        this.getPlayerMatches();
-
-        /**
-         * Give the Pipes a second to complete.
-         */
-        setTimeout(() => {
-            this.loader.dismiss();
-        }, 1000);
-
+        this.init();
     }
 
-    private async getAllHeroes() {
+    private async init() {
         this.heroes = await this.heroProvider.getHeroes();
+        this.matches = await this.matchProvider.getPlayerMatches(this.account.playerId);
+        this.loadPlayerMatches();
+        this.loader.dismiss();
     }
 
-    private async getPlayerMatches() {
-        this.matches = await this.matchProvider.getPlayerMatches(this.account.playerId);
-
+    private loadPlayerMatches() {
         this.matches.forEach(( match: Match ) => {
 
             match.teams[ 0 ].forEach(( player: MatchTeamPlayer ) => {
@@ -89,14 +74,7 @@ export class MatchesPage {
             match.player.kdaRatio = this.statsProvider.getKDARatio(match.player.kills, match.player.assists, match.player.deaths);
             match.player.killParticipation = this.statsProvider.getRatio(match.player.kills + match.player.assists, match.playerTeamKills) * 100;
         });
-
-
         this.filteredMatches = this.matches;
-    }
-
-    private setMatchResults() {
-
-
     }
 
     applyHeroFilter() {
@@ -111,5 +89,11 @@ export class MatchesPage {
 
     clearHeroFilter() {
         this.filterMatchesByHero = 'all';
+    }
+
+    goToMatchSummary( match: Match ) {
+        this.navCtrl.push('MatchSummaryPage', {
+            match: match
+        });
     }
 }

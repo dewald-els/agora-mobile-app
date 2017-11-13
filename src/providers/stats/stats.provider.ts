@@ -1,4 +1,5 @@
 import { Injectable } from "@angular/core";
+import { LEAGUE } from "../../static-models/leagues/leagues.static";
 
 @Injectable()
 export class StatsProvider {
@@ -20,5 +21,23 @@ export class StatsProvider {
 
     public getRatio( ratio: number, of: number ) {
         return (ratio / of);
+    }
+
+    public calculateLeague( elo: number )  {
+        if ( elo <= 1099 ) {
+            return 'bronze';
+        } else if ( elo >= 1100 && elo <= 1299 ) {
+            return 'silver';
+        } else if ( elo >= 1300 && elo <= 1499 ) {
+            return 'gold';
+        } else if ( elo >= 1500 && elo <= 1699 ) {
+            return 'platinum';
+        } else if ( elo >= 1700 && elo < 2200 ) {
+            return 'diamond';
+        } else if ( elo >= 2200 ) {
+            return 'master';
+        } else {
+            return '';
+        }
     }
 }
