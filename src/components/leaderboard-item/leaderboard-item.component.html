@@ -1,0 +1,33 @@
+<ion-item-divider>
+    {{index+1}}.
+
+    <b>{{leader.player.name}}</b>
+    <b item-right>
+        <agora-sprite-league [spriteSize]="'sm'" [league]="leader.league"></agora-sprite-league>
+        &nbsp;<ion-badge>{{leader.elo | toFixed : 0}}</ion-badge>&nbsp;
+    </b>
+
+</ion-item-divider>
+<ion-item>
+    <ion-grid no-padding>
+        <ion-row>
+            <ion-col>
+
+                <b class="leaderboard__kda">KDA: {{leader.kdaRatio | toFixed : 2}}</b>
+                <p>{{leader.kills}} / {{leader.deaths}} / {{leader.assists}}</p>
+            </ion-col>
+            <ion-col>
+                Win Rate:
+                <horizontal-progress-bar [percentage]="leader.winRate | toFixed: 0"></horizontal-progress-bar>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-item>
+<ion-item>
+    Top heroes
+    <div item-right>
+        <agora-sprite-hero-avatar [size]="32" [heroName]="leader.hero1"></agora-sprite-hero-avatar>
+        <agora-sprite-hero-avatar [size]="32" [heroName]="leader.hero2"></agora-sprite-hero-avatar>
+        <agora-sprite-hero-avatar [size]="32" [heroName]="leader.hero3"></agora-sprite-hero-avatar>
+    </div>
+</ion-item>

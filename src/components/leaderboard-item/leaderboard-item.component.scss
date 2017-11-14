@@ -1,0 +1,20 @@
+leaderboard-item {
+  agora-sprite-hero-avatar .icon-hero {
+    display: inline-block;
+  }
+  .leaderboard__kda {
+    display: block;
+    margin-bottom: 7px;
+  }
+  .leaderboard__heroes-header {
+    margin-bottom: 10px;
+  }
+}
+
+.md {
+  page-leaderboards {
+    ion-item-divider {
+      background: color($colors, light);
+    }
+  }
+}

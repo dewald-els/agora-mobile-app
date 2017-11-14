@@ -19,6 +19,7 @@ import { AppProvider } from "../providers/app/app.provider";
 import { StatsProvider } from "../providers/stats/stats.provider";
 import { MatchProvider } from "../providers/match/match.provider";
 import { HttpClientModule } from "@angular/common/http";
+import { LeaderboardProvider } from "../providers/leaderboard/leaderboard.provider";
 
 @NgModule({
     declarations: [
@@ -48,7 +49,8 @@ import { HttpClientModule } from "@angular/common/http";
         ProfileProvider,
         AppProvider,
         StatsProvider,
-        MatchProvider
+        MatchProvider,
+        LeaderboardProvider
     ]
 
 })

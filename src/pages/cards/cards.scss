@@ -1,3 +1,47 @@
 page-cards {
 
+  .card__container {
+    position: relative;
+
+    img {
+      display: block;
+      width: 100%;
+      max-width: 100%;
+      border-style: inset;
+      border-color: #bd8d0d;
+      border-width: 4px;
+    }
+
+    .card__name {
+      position: absolute;
+      left: 4px;
+      top: 4px;
+      padding-bottom: 8px;
+
+      height: 100%;
+
+      .card__name-strip {
+        background: rgba(166,53,53,.75);;
+        height: 100%;
+        width: 25px;
+      }
+
+      span {
+        color: #fff;
+        font-weight: bold;
+        text-transform: uppercase;
+        text-align: left;
+        top: -10px;
+        padding-bottom: 4px;
+        position: absolute;
+        width: 225px;
+        z-index: 1;
+        display: block;
+        transform: rotate(90deg);
+        transform-origin: bottom left;
+      }
+    }
+
+  }
+
 }

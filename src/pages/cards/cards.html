@@ -1,15 +1,33 @@
 <ion-header>
 
-  <ion-navbar color="dark">
-    <button ion-button icon-only menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>Cards</ion-title>
-  </ion-navbar>
+    <ion-navbar color="dark">
+        <button ion-button icon-only menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>Cards</ion-title>
+    </ion-navbar>
+
+    <ion-toolbar color="dark">
+        <ion-searchbar (ionInput)="filterCards($event)"></ion-searchbar>
+    </ion-toolbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
+
+    <ion-grid>
+        <ion-row>
+            <ion-col col-6 *ngFor="let card of filteredCards">
+                <div class="card__container">
+                    <div class="card__name">
+                        <div class="card__name-strip"></div>
+                        <span>{{card.name}}</span>
+                    </div>
+                    <img [src]="'https://static.agora.gg/cards/275/'+card.icon+'.jpg'" alt="">
+                </div>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
 
 </ion-content>

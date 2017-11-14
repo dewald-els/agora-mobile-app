@@ -1,16 +1,18 @@
 <ion-header>
 
-  <ion-navbar color="dark">
-    <button ion-button icon-only menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
+    <ion-navbar color="dark">
+        <button ion-button icon-only menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
 
-    <ion-title>Leaderboards</ion-title>
-  </ion-navbar>
+        <ion-title>Leaderboards</ion-title>
+    </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
+
+    <leaderboard-item *ngFor="let leader of leaderboard; let i = index" [leader]="leader" [index]="i"></leaderboard-item>
 
 </ion-content>

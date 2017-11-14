@@ -9,6 +9,8 @@ import { HeroStatItemComponent } from "./hero-stat-item/hero-stat-item.component
 import { AffinityIconComponent } from "./affinity-icon/affinity-icon.component";
 import { AbilityListCardComponent } from './ability-list-card/ability-list-card.component';
 import { PipesModule } from "../pipes/pipes.module";
+import { LeaderboardItemComponent } from './leaderboard-item/leaderboard-item.component';
+import { ParagonCardComponent } from './paragon-card/paragon-card';
 
 @NgModule({
     declarations: [
@@ -19,7 +21,9 @@ import { PipesModule } from "../pipes/pipes.module";
         HorizontalProgressBarComponent,
         HeroStatItemComponent,
         AffinityIconComponent,
-        AbilityListCardComponent
+        AbilityListCardComponent,
+        LeaderboardItemComponent,
+    ParagonCardComponent
     ],
     imports: [ IonicModule, PipesModule ],
     exports: [
@@ -30,7 +34,9 @@ import { PipesModule } from "../pipes/pipes.module";
         HorizontalProgressBarComponent,
         HeroStatItemComponent,
         AffinityIconComponent,
-        AbilityListCardComponent
+        AbilityListCardComponent,
+        LeaderboardItemComponent,
+    ParagonCardComponent
     ]
 })
 export class ComponentsModule {
