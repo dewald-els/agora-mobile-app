@@ -8,7 +8,7 @@
     </ion-navbar>
 
     <ion-toolbar color="dark">
-        <ion-searchbar (ionInput)="filterCards($event)"></ion-searchbar>
+        <ion-searchbar (ionInput)="searchCards($event)"></ion-searchbar>
     </ion-toolbar>
 
 </ion-header>
@@ -31,3 +31,23 @@
     </ion-grid>
 
 </ion-content>
+
+<ion-footer>
+
+    <ion-toolbar color="dark">
+        <ion-buttons left>
+            <button ion-button>
+                <ion-icon name="funnel"></ion-icon>
+                &nbsp;Affinity
+            </button>
+        </ion-buttons>
+
+        <ion-buttons end>
+            <button ion-button>
+                <ion-icon name="stats"></ion-icon>
+                &nbsp;Sort
+            </button>
+        </ion-buttons>
+    </ion-toolbar>
+
+</ion-footer>

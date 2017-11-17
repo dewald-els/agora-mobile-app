@@ -9,6 +9,7 @@ import { EpicAccountProvider } from "../../providers/epic/epic-account.provider"
 import { Match } from "../../interfaces/match/match.interface";
 import { MatchTeamPlayer } from "../../interfaces/match/match-team-player.interface";
 import { StatsProvider } from "../../providers/stats/stats.provider";
+import { ProfileProvider } from "../../providers/profile/profile.provider";
 
 @IonicPage()
 @Component({
@@ -18,6 +19,7 @@ import { StatsProvider } from "../../providers/stats/stats.provider";
 export class MatchesPage {
 
     private account: EpicAccount;
+    private profile = {} as PlayerProfile;
     private matches = [] as Match[];
     private filteredMatches = [] as Match[];
     private heroes = [] as Hero[];
@@ -26,6 +28,7 @@ export class MatchesPage {
 
     constructor( public navCtrl: NavController,
                  private accountProvider: EpicAccountProvider,
+                 private profileProvider: ProfileProvider,
                  private heroProvider: HeroProvider,
                  private loadingCtrl: LoadingController,
                  private matchProvider: MatchProvider,
@@ -41,6 +44,7 @@ export class MatchesPage {
     }
 
     private async init() {
+        this.profile = new PlayerProfile(await this.profileProvider.getProfile(this.account.playerId));
         this.heroes = await this.heroProvider.getHeroes();
         this.matches = await this.matchProvider.getPlayerMatches(this.account.playerId);
         this.loadPlayerMatches();
@@ -49,14 +53,12 @@ export class MatchesPage {
 
     private loadPlayerMatches() {
         this.matches.forEach(( match: Match ) => {
-
             match.teams[ 0 ].forEach(( player: MatchTeamPlayer ) => {
                 if ( player.id === this.account.playerId ) {
                     match.player = player;
                     match.playerTeamIndex = 0;
                 }
             });
-
             match.teams[ 1 ].forEach(( player: MatchTeamPlayer ) => {
 
                 if ( player.id === this.account.playerId ) {
@@ -64,13 +66,11 @@ export class MatchesPage {
                     match.playerTeamIndex = 1;
                 }
             });
-
             match.playerTeamKills = 0;
-
             match.teams[ match.playerTeamIndex ].forEach(( player: MatchTeamPlayer ) => {
                 match.playerTeamKills += player.kills;
             });
-
+            match.player.eloChange = this.profile.getElo() - match.player.elo;
             match.player.kdaRatio = this.statsProvider.getKDARatio(match.player.kills, match.player.assists, match.player.deaths);
             match.player.killParticipation = this.statsProvider.getRatio(match.player.kills + match.player.assists, match.playerTeamKills) * 100;
         });

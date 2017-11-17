@@ -37,6 +37,7 @@ export interface MatchTeamPlayer {
     heroData?: Hero;
     kdaRatio?: number;
     killParticipation?: number;
-    league: string;
+    league?: string;
+    eloChange?: number;
 
 }
