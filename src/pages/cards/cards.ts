@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
+import { InfiniteScroll, IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
 import { CardProvider } from "../../providers/card/card.provider";
 import { ParagonCard } from "../../interfaces/card/paragon-card.interface";
 import { AFFINITY } from "../../static-models/affinity/affinities.static";
@@ -26,6 +26,7 @@ export class CardsPage {
     private chunkSize: number = 0;
     private chunkedCards: any;
     private currentChunk: number = 0;
+    private infiniteScrollEnabled: boolean = true;
 
     constructor( private navCtrl: NavController, private cardProvider: CardProvider, private platform: Platform ) {
         this.cardWidth = (this.platform.width() / 2);
@@ -37,18 +38,7 @@ export class CardsPage {
     private async getAllCards() {
         this.cards = await this.cardProvider.getAllCards();
 
-        let totalCards = this.cards.length;
-        this.chunkSize = Math.floor(totalCards / 10);
-        this.chunkedCards = [];
-
-        this.chunkedCards = this.cards.reduce(( add, curr, currentIndex ) => {
-            if ( !(currentIndex % 10) ) {
-                add.push(this.cards.slice(currentIndex, currentIndex + 10));
-            }
-            return add;
-        }, []);
-
-        this.filteredCards = this.chunkedCards[ this.currentChunk ];
+        this.divideCardsIntoChunks();
 
         this.cards.forEach(( card: ParagonCard ) => {
 
@@ -72,14 +62,41 @@ export class CardsPage {
                     return false;
             }
         });
-        console.log(this.cards);
     }
 
-    private addScrollCards( $event ) {
+    private divideCardsIntoChunks() {
+        let totalCards = this.cards.length;
+        this.chunkSize = Math.floor(totalCards / 10);
+        this.chunkedCards = [];
+        this.chunkedCards = this.cards.reduce(( add, curr, currentIndex ) => {
+            if ( !(currentIndex % 10) ) {
+                add.push(this.cards.slice(currentIndex, currentIndex + 10));
+            }
+            return add;
+        }, []);
+
+        this.filteredCards = this.chunkedCards[ this.currentChunk ];
+    }
+
+    private addScrollCards() {
+
 
         this.currentChunk++;
-        this.filteredCards.push(...this.chunkedCards[ this.currentChunk ]);
+        if ( this.chunkedCards[ this.currentChunk ] ) {
+            this.filteredCards.push(...this.chunkedCards[ this.currentChunk ]);
+        } else {
+            this.infiniteScrollEnabled = false;
+        }
 
+
+    }
+
+    loadAllCards() {
+        this.filteredCards = [];
+        this.chunkedCards.forEach(( chunk ) => {
+            this.filteredCards.push(...chunk);
+        });
+        this.infiniteScrollEnabled = false;
     }
 
     public searchCards( event ) {

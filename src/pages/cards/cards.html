@@ -18,39 +18,27 @@
 
     <ion-grid>
         <ion-row>
-
-            <ion-col col-6 *ngFor="let card of filteredCards" no-padding text-center>
+            <ion-col col-6 *ngFor="let card of filteredCards" text-center>
                 <img class="card" [src]="card.levels[0].levelImage"
-                         [width]="cardWidth"
-                         [height]="cardHeight"
-                         (click)="showCardSummaryPage(card)">
+                     [width]="cardWidth"
+                     [height]="cardHeight"
+                     (click)="showCardSummaryPage(card)">
             </ion-col>
-
-            <ion-infinite-scroll (ionInfinite)="addScrollCards($event)">
-                <ion-infinite-scroll-content></ion-infinite-scroll-content>
-            </ion-infinite-scroll>
-
         </ion-row>
     </ion-grid>
 
+
+    <ion-grid *ngIf="infiniteScrollEnabled">
+        <ion-row>
+            <ion-col>
+                <button ion-button (click)="addScrollCards()" round block>Load more</button>
+            </ion-col>
+            <ion-col>
+                <button ion-button (click)="loadAllCards()" round block outline>Load All</button>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+
 </ion-content>
 
-<ion-footer>
-
-    <ion-toolbar color="dark">
-        <ion-buttons left>
-            <button ion-button>
-                <ion-icon name="funnel"></ion-icon>
-                &nbsp;Affinity
-            </button>
-        </ion-buttons>
-
-        <ion-buttons end>
-            <button ion-button>
-                <ion-icon name="stats"></ion-icon>
-                &nbsp;Sort
-            </button>
-        </ion-buttons>
-    </ion-toolbar>
-
-</ion-footer>
