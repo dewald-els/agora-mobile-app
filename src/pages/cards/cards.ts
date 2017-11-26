@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
-import { InfiniteScroll, IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { Content, Img, InfiniteScroll, IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
 import { CardProvider } from "../../providers/card/card.provider";
 import { ParagonCard } from "../../interfaces/card/paragon-card.interface";
 import { AFFINITY } from "../../static-models/affinity/affinities.static";
+import { updateImgs } from "ionic-angular/components/content/content";
 
 @IonicPage()
 @Component({
@@ -24,6 +25,29 @@ export class CardsPage {
     constructor( private navCtrl: NavController, private cardProvider: CardProvider, private platform: Platform ) {
         this.getAllCards();
     }
+
+    /*
+    2017-11-26
+    start FIX#1 ion-img doesn't correctly work with virtualScroll
+    https://github.com/ionic-team/ionic/issues/9660#issuecomment-304840427
+    */
+    @ViewChild(Content) _content: Content;
+    ngAfterViewInit() {
+        if ( this._content ) {
+            this._content.imgsUpdate = () => {
+                if ( this._content._scroll.initialized && this._content._imgs.length && this._content.isImgsUpdatable() ) {
+                    // reset cached bounds
+                    this._content._imgs.forEach(( img: Img ) => img._rect = null);
+                    // use global position to calculate if an img is in the viewable area
+                    updateImgs(this._content._imgs, this._content._cTop * -1, this._content.contentHeight, this._content.directionY, 1400, 400);
+                }
+            };
+        }
+    }
+
+    /*
+    end FIX#1
+    */
 
     private async getAllCards() {
         this.cards = await this.cardProvider.getAllCards();

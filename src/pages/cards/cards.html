@@ -16,9 +16,9 @@
 
 <ion-content>
 
-    <ion-list [virtualScroll]="filteredCards" [approxItemHeight]="approxScrollHeight">
-        <button ion-item *virtualItem="let card" (click)="showCardSummaryPage(card)">
-            <img [src]="card.levels[0].levelImage" item-start [width]="100" [height]="150">
+    <ion-list [virtualScroll]="filteredCards" [approxItemHeight]="'150px'" class="cards">
+        <button ion-item *virtualItem="let card" (click)="showCardSummaryPage(card)" style="overflow:hidden;width:100%;height:150px;">
+            <ion-img [src]="card.levels[0].levelImage" item-start [width]="'100px'" [height]="'150px'" [cache]="true"></ion-img>
             <h2>{{card.name}}</h2>
             <p>{{card.affinity}} - {{card.rarity}}</p>
         </button>
