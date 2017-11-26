@@ -3,7 +3,7 @@
     <name>Agora</name>
     <description>Agora mobile app for Paragon.</description>
     <author email="support@agora.gg" href="http://agora.gg/">Agora</author>
-    <content original-src="index.html" src="http://192.168.1.111:8100" />
+    <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
