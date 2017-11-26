@@ -137,7 +137,11 @@
                 </ion-item>
             </ion-list>
 
-            <button ion-item (click)="loadLifetimeStats()" [ngClass]="{'hide' : lifetimeStats }">
+            <ion-item *ngIf="fetchingLifetimestats" text-center>
+                <ion-spinner></ion-spinner>
+            </ion-item>
+
+            <button ion-item (click)="loadLifetimeStats()" [ngClass]="{'hide' : lifetimeStats || fetchingLifetimestats }">
                 Load stats
             </button>
         </ion-card>

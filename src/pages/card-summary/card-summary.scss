@@ -1,0 +1,40 @@
+page-card-summary {
+
+  ion-card {
+    ion-card-header {
+      border-bottom: 1px solid color($colors, light);
+    }
+
+    &.affinity-chaos {
+      ion-card-header {
+        background: color($colors, affinity-chaos);
+      }
+    }
+
+    &.affinity-death {
+      ion-card-header {
+        background: color($colors, affinity-death);
+      }
+    }
+
+    &.affinity-knowledge {
+      ion-card-header {
+        background: color($colors, affinity-knowledge);
+      }
+    }
+
+    &.affinity-order {
+      ion-card-header {
+        background: color($colors, affinity-order);
+      }
+    }
+
+    &.affinity-growth {
+      ion-card-header {
+        background: color($colors, affinity-growth);
+      }
+    }
+
+  }
+
+}

@@ -18,15 +18,18 @@
 
     <ion-grid>
         <ion-row>
-            <ion-col col-6 *ngFor="let card of filteredCards">
-                <div class="card__container">
-                    <div class="card__name">
-                        <div class="card__name-strip"></div>
-                        <span>{{card.name}}</span>
-                    </div>
-                    <img [src]="'https://static.agora.gg/cards/275/'+card.icon+'.jpg'" alt="">
-                </div>
+
+            <ion-col col-6 *ngFor="let card of filteredCards" no-padding text-center>
+                <img class="card" [src]="card.levels[0].levelImage"
+                         [width]="cardWidth"
+                         [height]="cardHeight"
+                         (click)="showCardSummaryPage(card)">
             </ion-col>
+
+            <ion-infinite-scroll (ionInfinite)="addScrollCards($event)">
+                <ion-infinite-scroll-content></ion-infinite-scroll-content>
+            </ion-infinite-scroll>
+
         </ion-row>
     </ion-grid>
 

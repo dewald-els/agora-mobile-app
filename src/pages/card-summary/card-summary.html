@@ -1,0 +1,60 @@
+<ion-header>
+
+    <ion-navbar color="dark">
+        <ion-title>{{card.name}}</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+
+    <ion-card [ngClass]="affinityColor">
+
+        <ion-card-header color="light">
+            {{card.name}}
+        </ion-card-header>
+
+        <ion-card-content>
+            <img [src]="card.levels[0].levelImage">
+        </ion-card-content>
+
+    </ion-card>
+
+    <ion-card>
+
+        <ion-card-header>
+            Info
+        </ion-card-header>
+
+        <ion-item>
+            Affinity
+            <span item-right>{{card.affinity}}</span>
+        </ion-item>
+
+        <ion-item>
+            Rarity
+            <span item-right>{{card.rarity}}</span>
+        </ion-item>
+
+    </ion-card>
+
+
+
+    <ion-card>
+        <ion-card-header>
+            Abilities
+        </ion-card-header>
+        <ion-item-group *ngFor="let ability of card.levels[0].abilities">
+            <ion-item-divider>
+                {{ability.name}}
+            </ion-item-divider>
+
+            <ion-item text-wrap>
+                <p>{{ability.description}}</p>
+            </ion-item>
+
+        </ion-item-group>
+    </ion-card>
+
+</ion-content>

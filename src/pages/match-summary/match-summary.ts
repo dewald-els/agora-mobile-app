@@ -34,12 +34,20 @@ export class MatchSummaryPage {
 
             this.setUpMatchTeamStats(i);
             this.match.teams[ i ].forEach(( player: MatchTeamPlayer ) => {
+
                 player.heroData = this.heroes.find(( hero: Hero ) => {
+
+                    // Bug where Drongo's code is empty.
+                    if (hero.code === '' && player.hero == 'HeroData_Shrapnel') {
+                        return true;
+                    }
+
                     return player.hero === hero.code;
                 });
                 player.league = this.statsProvider.calculateLeague(player.elo);
                 player.kdaRatio = this.statsProvider.getKDARatio(player.kills, player.assists, player.deaths);
                 this.updateTeamMatchStats(i, player);
+
             });
 
             this.match.teamStats[ i ].elo = Math.floor(this.match.teamStats[ i ].elo / this.match.teams[ i ].length);

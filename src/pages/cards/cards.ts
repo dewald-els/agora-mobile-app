@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
 import { CardProvider } from "../../providers/card/card.provider";
 import { ParagonCard } from "../../interfaces/card/paragon-card.interface";
 import { AFFINITY } from "../../static-models/affinity/affinities.static";
@@ -12,7 +12,7 @@ import { AFFINITY } from "../../static-models/affinity/affinities.static";
 export class CardsPage {
 
     private cards = [] as ParagonCard[];
-    private filteredCards = [] as ParagonCard[];
+    private filteredCards = []  as ParagonCard[];
 
     private growthCards = [];
     private chaosCards = [];
@@ -20,13 +20,36 @@ export class CardsPage {
     private deathCards = [];
     private knowledgeCards = [];
 
-    constructor( private cardProvider: CardProvider ) {
+    private cardWidth: number = 0;
+    private cardHeight: number = 0;
+
+    private chunkSize: number = 0;
+    private chunkedCards: any;
+    private currentChunk: number = 0;
+
+    constructor( private navCtrl: NavController, private cardProvider: CardProvider, private platform: Platform ) {
+        this.cardWidth = (this.platform.width() / 2);
+        this.cardHeight = this.cardWidth * 1.5;
         this.getAllCards();
     }
 
+
     private async getAllCards() {
         this.cards = await this.cardProvider.getAllCards();
-        this.filteredCards = this.cards;
+
+        let totalCards = this.cards.length;
+        this.chunkSize = Math.floor(totalCards / 10);
+        this.chunkedCards = [];
+
+        this.chunkedCards = this.cards.reduce(( add, curr, currentIndex ) => {
+            if ( !(currentIndex % 10) ) {
+                add.push(this.cards.slice(currentIndex, currentIndex + 10));
+            }
+            return add;
+        }, []);
+
+        this.filteredCards = this.chunkedCards[ this.currentChunk ];
+
         this.cards.forEach(( card: ParagonCard ) => {
 
             switch ( card.affinity.toLowerCase() ) {
@@ -48,9 +71,15 @@ export class CardsPage {
                 default :
                     return false;
             }
-
         });
         console.log(this.cards);
+    }
+
+    private addScrollCards( $event ) {
+
+        this.currentChunk++;
+        this.filteredCards.push(...this.chunkedCards[ this.currentChunk ]);
+
     }
 
     public searchCards( event ) {
@@ -73,4 +102,9 @@ export class CardsPage {
         console.log(this.filteredCards);
     }
 
+    private showCardSummaryPage( card: ParagonCard ) {
+        this.navCtrl.push('CardSummaryPage', {
+            card: card
+        });
+    }
 }

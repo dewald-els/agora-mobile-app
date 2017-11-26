@@ -29,6 +29,7 @@ export class ProfilePage {
     private leagues = LEAGUES;
     private currentLeague = {} as League;
     private profileElo = [];
+    private fetchingLifetimestats: boolean = false;
 
     constructor( private navCtrl: NavController,
                  private popoverCtrl: PopoverController,
@@ -52,6 +53,11 @@ export class ProfilePage {
             this.pvpStats = this.profile.stats[ 0 ];
             this.pvpStats.percentile = Number(this.pvpStats.percentile.toFixed(2));
             this.pvpStats.heroes.forEach(( stat: HeroStats ) => {
+
+                if (stat.hero === '') {
+                    stat.hero = 'HeroData_Shrapnel';
+                }
+
                 stat.winRate = Math.round(Number(this.statsProvider.getWinRatio(stat.wins, stat.gamesPlayed)));
                 stat.kdaRate = Number(this.statsProvider.getKDARatio(stat.kills, stat.assists, stat.deaths));
             });
@@ -65,6 +71,7 @@ export class ProfilePage {
     }
 
     async loadLifetimeStats() {
+        this.fetchingLifetimestats = true;
         this.lifetimeStats = await this.profileProvider.getLifetimeStats(this.profile.accountGuid);
         this.lifetimeStats.pvp.kdaRatio = this.statsProvider.getKDARatio(this.lifetimeStats.pvp.kills_hero, this.lifetimeStats.pvp.assists_hero, this.lifetimeStats.pvp.deaths_hero);
         this.lifetimeStats.pvp.winRatio = this.statsProvider.getWinRatio(this.lifetimeStats.pvp.games_won, this.lifetimeStats.pvp.games_played);
@@ -75,6 +82,8 @@ export class ProfilePage {
         this.lifetimeStats.pvp.structureKillsPerGame = this.statsProvider.getRatio(
             this.lifetimeStats.pvp.kills_towers + this.lifetimeStats.pvp.kills_inhibitors + this.lifetimeStats.pvp.kills_core,
             this.lifetimeStats.pvp.games_played);
+
+        this.fetchingLifetimestats = false;
         console.log(this.lifetimeStats);
     }
 
