@@ -19,27 +19,16 @@ export class CardsPage {
     private orderCards = [];
     private deathCards = [];
     private knowledgeCards = [];
-
-    private cardWidth: number = 0;
-    private cardHeight: number = 0;
-
-    private chunkSize: number = 0;
-    private chunkedCards: any;
-    private currentChunk: number = 0;
-    private infiniteScrollEnabled: boolean = true;
+    private approxScrollHeight = '0px';
 
     constructor( private navCtrl: NavController, private cardProvider: CardProvider, private platform: Platform ) {
-        this.cardWidth = (this.platform.width() / 2);
-        this.cardHeight = this.cardWidth * 1.5;
         this.getAllCards();
     }
 
-
     private async getAllCards() {
         this.cards = await this.cardProvider.getAllCards();
-
-        this.divideCardsIntoChunks();
-
+        this.approxScrollHeight = (42 * this.cards.length) + "px";
+        this.filteredCards = this.cards;
         this.cards.forEach(( card: ParagonCard ) => {
 
             switch ( card.affinity.toLowerCase() ) {
@@ -62,41 +51,6 @@ export class CardsPage {
                     return false;
             }
         });
-    }
-
-    private divideCardsIntoChunks() {
-        let totalCards = this.cards.length;
-        this.chunkSize = Math.floor(totalCards / 10);
-        this.chunkedCards = [];
-        this.chunkedCards = this.cards.reduce(( add, curr, currentIndex ) => {
-            if ( !(currentIndex % 10) ) {
-                add.push(this.cards.slice(currentIndex, currentIndex + 10));
-            }
-            return add;
-        }, []);
-
-        this.filteredCards = this.chunkedCards[ this.currentChunk ];
-    }
-
-    private addScrollCards() {
-
-
-        this.currentChunk++;
-        if ( this.chunkedCards[ this.currentChunk ] ) {
-            this.filteredCards.push(...this.chunkedCards[ this.currentChunk ]);
-        } else {
-            this.infiniteScrollEnabled = false;
-        }
-
-
-    }
-
-    loadAllCards() {
-        this.filteredCards = [];
-        this.chunkedCards.forEach(( chunk ) => {
-            this.filteredCards.push(...chunk);
-        });
-        this.infiniteScrollEnabled = false;
     }
 
     public searchCards( event ) {
