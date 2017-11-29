@@ -1,11 +1,34 @@
 page-cards {
 
   .card {
-    max-width: 100%;
-    filter: brightness(140%) contrast(77%);
-    display: inline-block;
-    margin: 0 auto;
-    //background-color: transparent !important;
+    width: 104px;
+    height: 170px;
+    background-color: color($colors, light) !important;
+    border: inset darkgoldenrod 2px;
+    overflow: hidden !important;
+
+  }
+
+  .card-button {
+    h2 {
+      font-weight: bold;
+
+      &.Chaos {
+        color: color($colors, affinity-chaos)
+      }
+      &.Death {
+        color: color($colors, affinity-death)
+      }
+      &.Knowledge {
+        color: color($colors, affinity-knowledge)
+      }
+      &.Order {
+        color: color($colors, affinity-order)
+      }
+      &.Growth {
+        color: color($colors, affinity-growth)
+      }
+    }
   }
 
 }
