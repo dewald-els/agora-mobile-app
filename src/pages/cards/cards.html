@@ -16,11 +16,11 @@
 
 <ion-content>
 
-    <ion-list [virtualScroll]="filteredCards" [approxItemHeight]="'185px'" class="cards">
-        <button ion-item *virtualItem="let card" (click)="showCardSummaryPage(card)" style="overflow:hidden;width:100%;height:195px;" class="card-button">
+    <ion-list [virtualScroll]="filteredCards" [approxItemHeight]="'174px'" class="cards">
+        <button ion-item *virtualItem="let card" (click)="showCardSummaryPage(card)" class="card-button">
 
             <div class="card" item-start>
-                <ion-img [src]="'https://static.agora.gg/cards/275/' + card.icon + '.jpg'"  [width]="'100px'" [height]="'150px'" [cache]="true"></ion-img>
+                <ion-img [src]="'https://static.agora.gg/cards/275/' + card.icon + '.jpg'"  [width]="'100px'" [height]="'170px'" [cache]="true"></ion-img>
             </div>
 
             <h2 [ngClass]="card.affinity">{{card.name}}</h2>

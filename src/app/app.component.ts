@@ -18,7 +18,6 @@ export class AgoraMobile {
             splashScreen.hide();
         });
     }
-    
 
     private getDefaultStartPage() {
 
