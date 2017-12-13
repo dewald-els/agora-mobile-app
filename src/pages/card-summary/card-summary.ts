@@ -16,10 +16,12 @@ export class CardSummaryPage {
 
         this.card = this.navParams.get('card');
         this.affinityColor += this.card.affinity.toLowerCase();
+
     }
 
     ionViewDidLoad() {
         console.log('ionViewDidLoad CardSummaryPage');
     }
+
 
 }

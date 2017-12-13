@@ -10,4 +10,5 @@ export interface ParagonCard {
     levelImage: string;
     rarity: string;
     trait: string;
+    imageUrl : string;
 }

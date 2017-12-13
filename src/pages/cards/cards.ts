@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Content, Img, InfiniteScroll, IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
+import { Content, Img, IonicPage, NavController, Platform } from 'ionic-angular';
 import { CardProvider } from "../../providers/card/card.provider";
 import { ParagonCard } from "../../interfaces/card/paragon-card.interface";
 import { AFFINITY } from "../../static-models/affinity/affinities.static";

@@ -1,5 +1,13 @@
 page-card-summary {
 
+  img {
+    filter: brightness(140%) contrast(77%);
+  }
+
+  .img-loaded + .card-loading {
+    display:none;
+  }
+
   ion-card {
     ion-card-header {
       border-bottom: 1px solid color($colors, light);
