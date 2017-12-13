@@ -7,3 +7,4 @@ www/
 *.map
 
 *.map
+.sourcemaps/main.js.map
