@@ -52,18 +52,14 @@ export class ProfilePage {
             this.currentLeague = this.leagues[ this.profile.calculateProfileLeague() ];
             this.pvpStats = this.profile.stats[ 0 ];
             this.pvpStats.percentile = Number(this.pvpStats.percentile.toFixed(2));
+
+            console.log(this.pvpStats.heroes);
             this.pvpStats.heroes.forEach(( stat: HeroStats ) => {
-
-                if (stat.hero === '') {
-                    stat.hero = 'HeroData_Shrapnel';
-                }
-
                 stat.winRate = Math.round(Number(this.statsProvider.getWinRatio(stat.wins, stat.gamesPlayed)));
                 stat.kdaRate = Number(this.statsProvider.getKDARatio(stat.kills, stat.assists, stat.deaths));
             });
             this.pvpStats.heroes = this.heroProvider.sortBy('picks', this.pvpStats.heroes);
         }
-        console.log(this.profile);
     }
 
     ionViewDidLoad() {
@@ -84,7 +80,7 @@ export class ProfilePage {
             this.lifetimeStats.pvp.games_played);
 
         this.fetchingLifetimestats = false;
-        console.log(this.lifetimeStats);
+    
     }
 
     showProfileMenu( event ) {

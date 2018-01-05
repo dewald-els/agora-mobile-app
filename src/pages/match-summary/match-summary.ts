@@ -38,7 +38,11 @@ export class MatchSummaryPage {
                 player.heroData = this.heroes.find(( hero: Hero ) => {
 
                     // Bug where Drongo's code is empty.
-                    if (hero.code === '' && player.hero == 'HeroData_Shrapnel') {
+                    if (hero.code === '' && hero.name == 'Drongo' && player.hero == 'HeroData_Shrapnel') {
+                        return true;
+                    }
+                    // Bug where Terra's code is empty.
+                    if (hero.code === '' && hero.name == 'Terra' && player.hero == 'HeroData_Justice') {
                         return true;
                     }
 

@@ -34,13 +34,12 @@
         <ion-item-divider *ngIf="match.playerTeamIndex === match.winningTeam; else defeat"
                           class="match__victory-divider">
             <b>Victory</b>
-            <ion-badge item-right color="secondary">+7 Elo</ion-badge>
+            <ion-badge item-right color="secondary">Elo: +{{match.eloChange}}</ion-badge>
         </ion-item-divider>
-
         <ng-template #defeat>
             <ion-item-divider class="match__defeat-divider">
                 <b>Defeat</b>
-                <ion-badge item-right color="danger">-7 Elo</ion-badge>
+                <ion-badge item-right color="danger">Elo: -{{match.eloChange}}</ion-badge>
             </ion-item-divider>
         </ng-template>
 

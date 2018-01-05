@@ -14,4 +14,6 @@ export interface Match {
     playerTeamIndex?: number;
     playerTeamKills? : number;
     teamStats? : Array<MatchTeamStats>;
+    playerIndex? : number;
+    eloChange? : number;
 }

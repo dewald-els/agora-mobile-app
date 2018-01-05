@@ -35,6 +35,7 @@ export class HeroStatsPage {
         loader.present();
         this.allHeroStats = await this.heroProvider.getHeroStats();
         this.heroes = await this.heroProvider.getHeroes();
+        console.log(this.heroes);
         this.heroProvider.cacheHeroes(this.heroes);
         this.keysToArray(this.filterByLeague);
         this.addHeroDataToStats();
@@ -52,7 +53,8 @@ export class HeroStatsPage {
             // Add hero data (Image, name etc)
             heroStat.heroData = this.heroes.find(( hero: Hero ) => {
                 if ( hero.code === heroStat.hero ) return true;
-                if ( !hero.code && heroStat.hero == 'HeroData_Shrapnel' ) return true;
+                if ( !hero.code && hero.name == 'Drongo' && heroStat.hero == 'HeroData_Shrapnel' ) return true;
+                if ( !hero.code && hero.name == 'Terra' && heroStat.hero == 'HeroData_Justice' ) return true;
             });
         });
     }

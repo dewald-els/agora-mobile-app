@@ -38,6 +38,5 @@ export interface MatchTeamPlayer {
     kdaRatio?: number;
     killParticipation?: number;
     league?: string;
-    eloChange?: number;
 
 }
