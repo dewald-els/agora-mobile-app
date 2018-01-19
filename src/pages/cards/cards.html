@@ -5,10 +5,16 @@
             <ion-icon name="menu"></ion-icon>
         </button>
         <ion-title>Cards</ion-title>
+
+        <ion-buttons end>
+            <button ion-button icon-only (click)="showFilterMenu($event)">
+                <ion-icon name="funnel"></ion-icon>
+            </button>
+        </ion-buttons>
     </ion-navbar>
 
     <ion-toolbar color="dark">
-        <ion-searchbar (ionInput)="searchCards($event)"></ion-searchbar>
+        <ion-searchbar (ionInput)="filterCardsByName($event)"></ion-searchbar>
     </ion-toolbar>
 
 </ion-header>
@@ -16,37 +22,17 @@
 
 <ion-content>
 
-    <ion-list [virtualScroll]="filteredCards" [approxItemHeight]="'174px'" class="cards">
-        <button ion-item *virtualItem="let card" (click)="showCardSummaryPage(card)" class="card-button">
+    <ion-list [virtualScroll]="cards">
 
-            <div class="card" item-start>
-                <ion-img [src]="'https://static.agora.gg/cards/275/' + card.icon + '.jpg'"  [width]="'100px'" [height]="'170px'" [cache]="true"></ion-img>
-            </div>
-
-            <h2 [ngClass]="card.affinity">{{card.name}}</h2>
-            <p>{{card.affinity}} - {{card.rarity}}</p>
+        <button ion-item *virtualItem="let card" (click)="goToCardSummary(card)">
+            <ion-avatar item-left>
+                <ion-img [src]="'https://static.agora.gg/cards/275/' + card.icon + '.jpg'" alt=""></ion-img>
+            </ion-avatar>
+            <h2 [ngClass]="[card.affinity]">{{card.name}}</h2>
+            <p>Level: {{card.rarity}}</p>
         </button>
+
     </ion-list>
 
 </ion-content>
-
-<ion-footer>
-
-    <ion-toolbar color="dark">
-        <ion-buttons left>
-            <button ion-button>
-                <ion-icon name="funnel"></ion-icon>
-                &nbsp;Affinity
-            </button>
-        </ion-buttons>
-
-        <ion-buttons end>
-            <button ion-button>
-                <ion-icon name="stats"></ion-icon>
-                &nbsp;Sort
-            </button>
-        </ion-buttons>
-    </ion-toolbar>
-
-</ion-footer>
 

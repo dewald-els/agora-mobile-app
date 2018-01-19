@@ -1,7 +1,32 @@
 page-card-summary {
 
-  img {
-    filter: brightness(140%) contrast(77%);
+  .card-image-wrapper {
+    background: color($colors, dark);
+    height: 290px;
+    width: 100%;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .card-loading {
+    margin-top: -175px;
+    color: #FFF;
+    z-index: 15;
+    position: relative;
+    ion-spinner {
+      color: #FFF
+    }
+  }
+
+  ion-img {
+    background: color($colors, dark);
+    width: 100%;
+    min-height: 340px;
+    img {
+      width: 100%;
+      display: block;
+      margin-top: -25%;
+    }
   }
 
   .img-loaded + .card-loading {
@@ -9,6 +34,9 @@ page-card-summary {
   }
 
   ion-card {
+
+    opacity: 0.95;
+
     ion-card-header {
       border-bottom: 1px solid color($colors, light);
     }

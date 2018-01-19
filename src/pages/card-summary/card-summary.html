@@ -7,16 +7,15 @@
 </ion-header>
 
 
-<ion-content>
+<ion-content  [ngStyle]="{'background': 'url(https://static.agora.gg/cards/275/' + card.icon + '.jpg) top center no-repeat', 'background-size': 'cover'}">
 
-    <div text-center>
-        <ion-img [src]="card.levels[0].levelImage"></ion-img>
-        <div class="card-loading" padding>
-            <ion-spinner></ion-spinner>
-            <p>Loading card...</p>
-        </div>
-
-    </div>
+    <!--<div text-center class="card-image-wrapper">-->
+        <!--<ion-img [src]="'https://static.agora.gg/cards/275/' + card.icon + '.jpg'"></ion-img>-->
+        <!--<div class="card-loading" padding>-->
+            <!--<ion-spinner color="light"></ion-spinner>-->
+            <!--<p>Loading card...</p>-->
+        <!--</div>-->
+    <!--</div>-->
 
 
 
