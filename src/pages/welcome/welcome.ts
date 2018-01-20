@@ -38,6 +38,7 @@ export class WelcomePage {
                 animate: true
             });
         }
+
     }
 
 }

@@ -34,5 +34,16 @@
 
     </ion-list>
 
+    <ion-fab bottom end *ngIf="filter !== 'all' && filter !== ''">
+        <button ion-fab color="affinity-{{filter}}">
+            <affinity-icon *ngIf="filter === 'chaos'" [affinity]="'chaos'" [iconSize]="32"></affinity-icon>
+            <affinity-icon *ngIf="filter === 'death'" [affinity]="'death'" [iconSize]="32"></affinity-icon>
+            <affinity-icon *ngIf="filter === 'growth'" [affinity]="'growth'" [iconSize]="32"></affinity-icon>
+            <affinity-icon *ngIf="filter === 'order'" [affinity]="'order'" [iconSize]="32"></affinity-icon>
+            <affinity-icon *ngIf="filter === 'knowledge'" [affinity]="'knowledge'" [iconSize]="32"></affinity-icon>
+        </button>
+    </ion-fab>
+
+
 </ion-content>
 

@@ -56,6 +56,7 @@ export class HeroProvider extends BaseProvider {
         }
     }
 
+
     public getAbilityIconUrl( iconCode: string ) {
         return `//static.agora.gg/skills/${iconCode}.png`;
     }

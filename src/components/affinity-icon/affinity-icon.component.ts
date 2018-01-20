@@ -11,6 +11,7 @@ export class AffinityIconComponent implements OnInit {
     @Input() iconSize : number = 128;
     affinityIcon : string = '';
 
+
     constructor(private heroProvider : HeroProvider) {
     }
 

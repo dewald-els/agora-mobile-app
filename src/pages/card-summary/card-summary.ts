@@ -22,9 +22,4 @@ export class CardSummaryPage {
 
     }
 
-    ionViewDidLoad() {
-        console.log('ionViewDidLoad CardSummaryPage');
-    }
-
-
 }

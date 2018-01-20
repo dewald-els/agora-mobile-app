@@ -2,22 +2,18 @@
 
     <ion-navbar color="{{affinityColor}}">
         <ion-title>{{card.name}}</ion-title>
+        <ion-buttons end>
+            <button icon-only ion-button>
+                <affinity-icon [affinity]="card.affinity" [iconSize]="'32'" item-left></affinity-icon>
+            </button>
+        </ion-buttons>
     </ion-navbar>
 
 </ion-header>
 
 
-<ion-content  [ngStyle]="{'background': 'url(https://static.agora.gg/cards/275/' + card.icon + '.jpg) top center no-repeat', 'background-size': 'cover'}">
-
-    <!--<div text-center class="card-image-wrapper">-->
-        <!--<ion-img [src]="'https://static.agora.gg/cards/275/' + card.icon + '.jpg'"></ion-img>-->
-        <!--<div class="card-loading" padding>-->
-            <!--<ion-spinner color="light"></ion-spinner>-->
-            <!--<p>Loading card...</p>-->
-        <!--</div>-->
-    <!--</div>-->
-
-
+<ion-content
+        [ngStyle]="{'background': 'url(https://static.agora.gg/cards/275/' + card.icon + '.jpg) top center no-repeat', 'background-size': 'cover'}">
 
     <ion-card [ngClass]="affinityColor">
 
@@ -37,12 +33,111 @@
 
     </ion-card>
 
+    <ion-card [ngClass]="affinityColor">
+
+        <ion-card-header color="light">
+            Cost
+        </ion-card-header>
+
+        <ion-item *ngIf="card.goldCost">
+            <span item-start class="cost-icon gold"></span>
+            Gold cost
+            <ion-badge item-end>{{card.goldCost}}</ion-badge>
+        </ion-item>
+
+        <ion-item *ngIf="card.agilityGemCost">
+            <span item-start class="cost-icon agility"></span>
+            Agility cost
+            <ion-badge item-end>{{card.agilityGemCost}}</ion-badge>
+        </ion-item>
+
+        <ion-item *ngIf="card.vitalityGemCost">
+            <span item-start class="cost-icon vitality"></span>
+            Vitality cost
+            <ion-badge item-end>{{card.vitalityGemCost}}</ion-badge>
+        </ion-item>
+
+        <ion-item *ngIf="card.intellectGemCost">
+            <span item-start class="cost-icon intellect"></span>
+            Intellect cost
+            <ion-badge item-end>{{card.intellectGemCost}}</ion-badge>
+        </ion-item>
+
+    </ion-card>
 
     <ion-card [ngClass]="affinityColor">
         <ion-card-header color="light">
             Abilities
         </ion-card-header>
+
+
+        <ion-item *ngIf="card.levels[0].power">
+            <div class="level-modifier" item-start>
+                <img src="https://agora.gg/assets/image/deck/power.png" alt="Power">
+            </div>
+            Power
+            <ion-badge item-right>+ {{card.levels[0].power}}</ion-badge>
+        </ion-item>
+
+        <ion-item *ngIf="card.levels[0].abilityArmor">
+            <div item-start class="level-modifier">
+                <img src="https://agora.gg/assets/image/deck/abilityArmor.png" alt="Ability Armor">
+            </div>
+            Ability Armor
+            <ion-badge item-right>+ {{card.levels[0].abilityArmor}}</ion-badge>
+        </ion-item>
+
+        <ion-item *ngIf="card.levels[0].basicArmor">
+            <div item-start class="level-modifier">
+                <img src="https://agora.gg/assets/image/deck/basicArmor.png" alt="Basic Armor speed">
+            </div>
+            Basic Armor
+            <ion-badge item-right>+ {{card.levels[0].basicArmor}}</ion-badge>
+        </ion-item>
+
+        <ion-item *ngIf="card.levels[0].attackSpeed">
+            <div item-start class="level-modifier">
+                <img src="https://agora.gg/assets/image/deck/attackSpeed.png" alt="Attack speed">
+            </div>
+            Attack Speed
+            <ion-badge item-right>+ {{card.levels[0].attackSpeed}}</ion-badge>
+        </ion-item>
+
+        <ion-item *ngIf="card.levels[0].health">
+            <div item-start class="level-modifier">
+                <img src="https://agora.gg/assets/image/deck/health.png" alt="Health">
+            </div>
+            Health
+            <ion-badge item-right>+ {{card.levels[0].health}}</ion-badge>
+        </ion-item>
+
+        <ion-item *ngIf="card.levels[0].mana">
+            <div item-start class="level-modifier">
+                <img src="https://agora.gg/assets/image/deck/mana.png" alt="Health">
+            </div>
+            Mana
+            <ion-badge item-right>+ {{card.levels[0].mana}}</ion-badge>
+        </ion-item>
+
+
+        <ion-item *ngIf="card.levels[0].manaRegen">
+            <div item-start class="level-modifier">
+                <img src="https://agora.gg/assets/image/deck/manaRegen.png" alt="Health">
+            </div>
+            Mana Regen
+            <ion-badge item-right>+ {{card.levels[0].manaRegen}}</ion-badge>
+        </ion-item>
+
+        <ion-item *ngIf="card.levels[0].healthRegen">
+            <div item-start class="level-modifier">
+                <img src="https://agora.gg/assets/image/deck/healthRegen.png" alt="Health">
+            </div>
+            Health Regen
+            <ion-badge item-right>+ {{card.levels[0].healthRegen}}</ion-badge>
+        </ion-item>
+
         <ion-item-group *ngFor="let ability of card.levels[0].abilities">
+
             <ion-item-divider>
                 {{ability.name}}
             </ion-item-divider>
@@ -50,6 +145,17 @@
             <ion-item text-wrap>
                 <p>{{ability.description}}</p>
             </ion-item>
+
+            <ion-item *ngIf="ability.cooldown">
+                Cooldown
+                <ion-badge item-right>{{ability.cooldown}}</ion-badge>
+            </ion-item>
+
+            <ion-item *ngIf="ability.manacost">
+                Mana Cost
+                <ion-badge item-right>{{ability.manacost}}</ion-badge>
+            </ion-item>
+
 
         </ion-item-group>
     </ion-card>
