@@ -22,7 +22,7 @@ export class HeroStatsPage {
     private sortStatsBy: string = 'wins';
     private filterByLeague: string = 'all';
 
-    constructor( private loadingCtrl: LoadingController, private navCtrl: NavController, private heroProvider: HeroProvider, private statsProvider : StatsProvider) {
+    constructor( private loadingCtrl: LoadingController, private navCtrl: NavController, private heroProvider: HeroProvider, private statsProvider: StatsProvider ) {
         this.getHeroStats();
         // don't allow master to be listed as a filter.
         this.leagues.pop();
@@ -81,8 +81,9 @@ export class HeroStatsPage {
         this.sortHeroStats();
     }
 
+
     private goToHeroSummaryPage( heroId: string ) {
-        this.navCtrl.push('HeroSummaryPage', {
+        this.navCtrl.push('hero-summary', {
             heroId: heroId
         });
     }

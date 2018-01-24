@@ -1,15 +1,24 @@
 <ion-header>
 
-  <ion-navbar color="dark">
-    <button ion-button icon-only menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>Gems</ion-title>
-  </ion-navbar>
+    <ion-navbar color="dark">
+        <button ion-button icon-only menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>Gems</ion-title>
+    </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
+
+    <ion-list>
+        <ion-item *ngFor="let gem of gems">
+
+            <gem-icon item-start [gem]="gem" [iconSize]="'sm'"></gem-icon>
+
+            {{gem.name}}
+        </ion-item>
+    </ion-list>
 
 </ion-content>

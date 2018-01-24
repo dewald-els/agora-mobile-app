@@ -28,12 +28,12 @@
             </ion-grid>
         </ion-item>
 
-        <ion-list-header>
+        <ion-item-divider *ngIf="ability.cooldown">
             Cooldowns
-        </ion-list-header>
+        </ion-item-divider>
 
-        <ion-item text-wrap>
-            <p>{{ability.modifiersByLevel[0][0].modifier | json}}</p>
+        <ion-item text-wrap *ngIf="ability.cooldown">
+           [ {{ability.cooldown}} ]
         </ion-item>
 
     </ion-item-group>

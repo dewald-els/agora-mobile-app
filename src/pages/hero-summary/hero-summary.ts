@@ -4,7 +4,11 @@ import { HeroProvider } from "../../providers/hero/hero.provider";
 import { Hero } from "../../interfaces/hero/hero";
 import { Ability } from "../../interfaces/hero/ability.interface";
 
-@IonicPage()
+@IonicPage({
+    name: 'hero-summary',
+    segment: 'hero-summary/:heroId',
+    defaultHistory: [ 'HeroStatsPage' ]
+})
 @Component({
     selector: 'page-hero-summary',
     templateUrl: 'hero-summary.html',
@@ -18,7 +22,7 @@ export class HeroSummaryPage {
 
     constructor( public navCtrl: NavController, public navParams: NavParams,
                  private heroProvider: HeroProvider,
-                 private loadingCtrl: LoadingController) {
+                 private loadingCtrl: LoadingController ) {
         this.heroId = this.navParams.get('heroId');
         this.getHeroSummary();
     }
@@ -41,6 +45,9 @@ export class HeroSummaryPage {
 
         this.hero.abilities.forEach(( ability: Ability ) => {
             ability.iconUrl = this.heroProvider.getAbilityIconUrl(ability.icon);
+
+            this.setAbilityData(ability);
+
         });
 
         this.hero.affinity1Icon = this.heroProvider.getAffinityIconUrl(this.hero.affinity1);
@@ -48,19 +55,69 @@ export class HeroSummaryPage {
 
         this.pageTitle = this.hero.name;
 
+
         loader.dismiss();
 
         if ( this.hero.name == 'Drongo' ) {
             this.hero.code = 'HeroData_Shrapnel';
         }
 
-        let img = new Image();
-        img.onload = () => {
-            this.heroBackground = 'url(//static.agora.gg/renders/' + this.hero.code + '.jpg)';
-        };
-        img.src = '//static.agora.gg/renders/' + this.hero.code + '.jpg';
+    }
 
-        console.log(this.hero);
+    setAbilityData( ability: Ability ) {
+
+        let modifiers: any[] = [];
+
+        // Build a item with a string of modifiers.
+        ability.modifiersByLevel.forEach(( level ) => {
+
+            if ( !level ) {
+                return;
+            }
+
+            level.forEach(( modifier ) => {
+
+                if ( !modifiers[ modifier.modifier ] ) {
+                    modifiers[ modifier.modifier ] = {
+                        modifier: modifier.modifier,
+                        value: modifier.value + ' / '
+                    };
+                    return;
+                }
+
+                modifiers[ modifier.modifier ].value += modifier.value + ' / ';
+
+            });
+
+        });
+
+        // Replace the values in the descriptions with the modifiers.
+        for ( var key in modifiers ) {
+
+            if ( key === 'cooldown' && modifiers[ key ] ) {
+
+                let cooldowns = modifiers[ key ].value.split('/');
+                cooldowns.pop();
+
+                let allMatch = cooldowns.every(( val, i, arr ) => val * 1 === arr[ 0 ] * 1);
+                if ( allMatch ) {
+                    ability.cooldown = cooldowns[ 0 ];
+                } else {
+                    ability.cooldown = modifiers[ key ].value.slice(0, -2);
+                }
+            }
+
+            ability.description = ability.description.replace('{' + key + '}', '[' + modifiers[ key ].value.slice(0, -2) + ' ] ');
+
+            console.log(ability.description.indexOf('{attr:physar}'));
+
+            // {attr:physar}
+            ability.description = ability.description.replace('{attr:physar}', 'Basic Armor');
+            // {attr:physdmg}
+            ability.description = ability.description.replace('{attr:physdmg}', 'Basic Damage');
+
+        }
+
     }
 
 }

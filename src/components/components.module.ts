@@ -11,6 +11,7 @@ import { AbilityListCardComponent } from './ability-list-card/ability-list-card.
 import { PipesModule } from "../pipes/pipes.module";
 import { LeaderboardItemComponent } from './leaderboard-item/leaderboard-item.component';
 import { ParagonCardComponent } from './paragon-card/paragon-card';
+import { GemIconComponent } from './gem-icon/gem-icon';
 
 @NgModule({
     declarations: [
@@ -23,7 +24,8 @@ import { ParagonCardComponent } from './paragon-card/paragon-card';
         AffinityIconComponent,
         AbilityListCardComponent,
         LeaderboardItemComponent,
-    ParagonCardComponent
+        ParagonCardComponent,
+        GemIconComponent
     ],
     imports: [ IonicModule, PipesModule ],
     exports: [
@@ -36,7 +38,8 @@ import { ParagonCardComponent } from './paragon-card/paragon-card';
         AffinityIconComponent,
         AbilityListCardComponent,
         LeaderboardItemComponent,
-    ParagonCardComponent
+        ParagonCardComponent,
+        GemIconComponent
     ]
 })
 export class ComponentsModule {

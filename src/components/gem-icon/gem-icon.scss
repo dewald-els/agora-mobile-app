@@ -1,0 +1,362 @@
+gem-icon {
+
+  .gem-wrapper {
+    display: block;
+    cursor: help
+  }
+
+  .gem-wrapper .gem {
+    background-image: url('https://agora.gg/assets/image/gems-sprite.png');
+    background-repeat: no-repeat;
+    display: block
+  }
+
+  .gem-wrapper .gem-base {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle
+  }
+
+  .gem-wrapper .gem-base > * {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1
+  }
+
+  .gem-wrapper .gem-Agility-Offense-lg {
+    width: 222px;
+    height: 222px;
+    background-position: 0 0
+  }
+
+  .gem-wrapper .gem-Agility-Offense-md {
+    width: 100px;
+    height: 100px;
+    background-position: -222px 0
+  }
+
+  .gem-wrapper .gem-Agility-Offense-sm {
+    width: 42px;
+    height: 42px;
+    background-position: -322px 0
+  }
+
+  .gem-wrapper .gem-Agility-Offense-xs {
+    width: 28px;
+    height: 28px;
+    background-position: -364px 0
+  }
+
+  .gem-wrapper .gem-Agility-Utility-lg {
+    width: 222px;
+    height: 222px;
+    background-position: -392px 0
+  }
+
+  .gem-wrapper .gem-Agility-Utility-md {
+    width: 100px;
+    height: 100px;
+    background-position: -614px 0
+  }
+
+  .gem-wrapper .gem-Agility-Utility-sm {
+    width: 42px;
+    height: 42px;
+    background-position: -714px 0
+  }
+
+  .gem-wrapper .gem-Agility-Utility-xs {
+    width: 28px;
+    height: 28px;
+    background-position: -756px 0
+  }
+
+  .gem-wrapper .gem-Agility-Defense-lg {
+    width: 222px;
+    height: 222px;
+    background-position: -784px 0
+  }
+
+  .gem-wrapper .gem-Agility-Defense-md {
+    width: 100px;
+    height: 100px;
+    background-position: -1006px 0
+  }
+
+  .gem-wrapper .gem-Agility-Defense-sm {
+    width: 42px;
+    height: 42px;
+    background-position: -1106px 0
+  }
+
+  .gem-wrapper .gem-Agility-Defense-xs {
+    width: 28px;
+    height: 28px;
+    background-position: -1148px 0
+  }
+
+  .gem-wrapper .gem-Intellect-Offense-lg {
+    width: 222px;
+    height: 222px;
+    background-position: -1176px 0
+  }
+
+  .gem-wrapper .gem-Intellect-Offense-md {
+    width: 100px;
+    height: 100px;
+    background-position: -1398px 0
+  }
+
+  .gem-wrapper .gem-Intellect-Offense-sm {
+    width: 42px;
+    height: 42px;
+    background-position: -1498px 0
+  }
+
+  .gem-wrapper .gem-Intellect-Offense-xs {
+    width: 28px;
+    height: 28px;
+    background-position: -1540px 0
+  }
+
+  .gem-wrapper .gem-Intellect-Utility-lg {
+    width: 222px;
+    height: 222px;
+    background-position: -1568px 0
+  }
+
+  .gem-wrapper .gem-Intellect-Utility-md {
+    width: 100px;
+    height: 100px;
+    background-position: -1790px 0
+  }
+
+  .gem-wrapper .gem-Intellect-Utility-sm {
+    width: 42px;
+    height: 42px;
+    background-position: -1890px 0
+  }
+
+  .gem-wrapper .gem-Intellect-Utility-xs {
+    width: 28px;
+    height: 28px;
+    background-position: -1932px 0
+  }
+
+  .gem-wrapper .gem-Intellect-Defense-lg {
+    width: 222px;
+    height: 222px;
+    background-position: -1960px 0
+  }
+
+  .gem-wrapper .gem-Intellect-Defense-md {
+    width: 100px;
+    height: 100px;
+    background-position: -2182px 0
+  }
+
+  .gem-wrapper .gem-Intellect-Defense-sm {
+    width: 42px;
+    height: 42px;
+    background-position: -2282px 0
+  }
+
+  .gem-wrapper .gem-Intellect-Defense-xs {
+    width: 28px;
+    height: 28px;
+    background-position: -2324px 0
+  }
+
+  .gem-wrapper .gem-setting-1-lg {
+    width: 222px;
+    height: 222px;
+    background-position: -2352px 0
+  }
+
+  .gem-wrapper .gem-setting-1-md {
+    width: 100px;
+    height: 100px;
+    background-position: -2574px 0
+  }
+
+  .gem-wrapper .gem-setting-1-sm {
+    width: 42px;
+    height: 42px;
+    background-position: -2674px 0
+  }
+
+  .gem-wrapper .gem-setting-1-xs {
+    width: 28px;
+    height: 28px;
+    background-position: -2716px 0
+  }
+
+  .gem-wrapper .gem-setting-7-lg {
+    width: 222px;
+    height: 222px;
+    background-position: -2744px 0
+  }
+
+  .gem-wrapper .gem-setting-7-md {
+    width: 100px;
+    height: 100px;
+    background-position: -2966px 0
+  }
+
+  .gem-wrapper .gem-setting-7-sm {
+    width: 42px;
+    height: 42px;
+    background-position: -3066px 0
+  }
+
+  .gem-wrapper .gem-setting-7-xs {
+    width: 28px;
+    height: 28px;
+    background-position: -3108px 0
+  }
+
+  .gem-wrapper .gem-setting-13-lg {
+    width: 222px;
+    height: 222px;
+    background-position: -3136px 0
+  }
+
+  .gem-wrapper .gem-setting-13-md {
+    width: 100px;
+    height: 100px;
+    background-position: -3358px 0
+  }
+
+  .gem-wrapper .gem-setting-13-sm {
+    width: 42px;
+    height: 42px;
+    background-position: -3458px 0
+  }
+
+  .gem-wrapper .gem-setting-13-xs {
+    width: 28px;
+    height: 28px;
+    background-position: -3500px 0
+  }
+
+  .gem-wrapper .gem-setting-19-lg {
+    width: 222px;
+    height: 222px;
+    background-position: -3528px 0
+  }
+
+  .gem-wrapper .gem-setting-19-md {
+    width: 100px;
+    height: 100px;
+    background-position: -3750px 0
+  }
+
+  .gem-wrapper .gem-setting-19-sm {
+    width: 42px;
+    height: 42px;
+    background-position: -3850px 0
+  }
+
+  .gem-wrapper .gem-setting-19-xs {
+    width: 28px;
+    height: 28px;
+    background-position: -3892px 0
+  }
+
+  .gem-wrapper .gem-setting-25-lg {
+    width: 222px;
+    height: 222px;
+    background-position: -3920px 0
+  }
+
+  .gem-wrapper .gem-setting-25-md {
+    width: 100px;
+    height: 100px;
+    background-position: -4142px 0
+  }
+
+  .gem-wrapper .gem-setting-25-sm {
+    width: 42px;
+    height: 42px;
+    background-position: -4242px 0
+  }
+
+  .gem-wrapper .gem-setting-25-xs {
+    width: 28px;
+    height: 28px;
+    background-position: -4284px 0
+  }
+
+  .gem-wrapper .gem-Vitality-Offense-lg {
+    width: 222px;
+    height: 222px;
+    background-position: -4312px 0
+  }
+
+  .gem-wrapper .gem-Vitality-Offense-md {
+    width: 100px;
+    height: 100px;
+    background-position: -4534px 0
+  }
+
+  .gem-wrapper .gem-Vitality-Offense-sm {
+    width: 42px;
+    height: 42px;
+    background-position: -4634px 0
+  }
+
+  .gem-wrapper .gem-Vitality-Offense-xs {
+    width: 28px;
+    height: 28px;
+    background-position: -4676px 0
+  }
+
+  .gem-wrapper .gem-Vitality-Utility-lg {
+    width: 222px;
+    height: 222px;
+    background-position: -4704px 0
+  }
+
+  .gem-wrapper .gem-Vitality-Utility-md {
+    width: 100px;
+    height: 100px;
+    background-position: -4926px 0
+  }
+
+  .gem-wrapper .gem-Vitality-Utility-sm {
+    width: 42px;
+    height: 42px;
+    background-position: -5026px 0
+  }
+
+  .gem-wrapper .gem-Vitality-Utility-xs {
+    width: 28px;
+    height: 28px;
+    background-position: -5068px 0
+  }
+
+  .gem-wrapper .gem-Vitality-Defense-lg {
+    width: 222px;
+    height: 222px;
+    background-position: -5096px 0
+  }
+
+  .gem-wrapper .gem-Vitality-Defense-md {
+    width: 100px;
+    height: 100px;
+    background-position: -5318px 0
+  }
+
+  .gem-wrapper .gem-Vitality-Defense-sm {
+    width: 42px;
+    height: 42px;
+    background-position: -5418px 0
+  }
+
+  .gem-wrapper .gem-Vitality-Defense-xs {
+    width: 28px;
+    height: 28px;
+    background-position: -5460px 0
+  }
+}
